@@ -2,9 +2,11 @@
 
 @use 'text.scss';
 @use 'fonts.scss';
+@use 'transistions.scss';
 
 @use 'layouts/base.scss';
 
 @use 'partials/header.scss';
+@use 'partials/footer.scss';
 
 @use 'pages/home.scss';

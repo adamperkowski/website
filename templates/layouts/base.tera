@@ -36,6 +36,8 @@
     <main class="main-page">
       {% block main %}{% endblock %}
     </main>
+
+    {% include "partials/footer.tera" %}
   </body>
 </html>
 

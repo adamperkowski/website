@@ -17,6 +17,7 @@ async fn axum() -> shuttle_axum::ShuttleAxum {
     tera_ctx.insert("author", "Adam Perkowski");
     tera_ctx.insert("keywords", "");
     tera_ctx.insert("canonical", "https://adamperkowski.dev");
+    tera_ctx.insert("repo", "https://github.com/adamperkowski/website");
 
     let app = Router::new()
         .route("/", get(render("home", &tera_ctx)))
