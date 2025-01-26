@@ -14,14 +14,13 @@ use templates::TEMPLATES;
 #[shuttle_runtime::main]
 async fn axum() -> shuttle_axum::ShuttleAxum {
     let mut tera_ctx = Context::new();
-    tera_ctx.insert("title", "Adam Perkowski");
     tera_ctx.insert("author", "Adam Perkowski");
-    tera_ctx.insert("description", "Just a random developer...");
     tera_ctx.insert("keywords", "");
     tera_ctx.insert("canonical", "https://adamperkowski.dev");
 
     let app = Router::new()
         .route("/", get(render("home", &tera_ctx)))
+        .route("/error", get(render("error", &tera_ctx)))
         .route("/static/{*file}", get(static_files::handler))
         .route(
             "/robots.txt",

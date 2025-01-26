@@ -1,0 +1,22 @@
+<header id="header">
+  <button class="mobile-burger" id="mobile-burger" aria-label="Mr. Mobile Burger" onclick="document.getElementById('nav').classList.toggle('nav-open')"></button>
+
+  <nav id="nav" class="align-header-split">
+    <div class="left align-header">
+      <a class="header-link" href="/">HOME</a>
+    </div>
+
+    <div class="right">
+      <form name="themes" id="form-themes" class="theme-switcher">
+        <select name="themes" id="themes" aria-label="Mr. Theme Switcher">
+          <option value="cat-mocha">Catppuccin Mocha</option>
+        </select>
+      </form>
+    </div>
+
+  </nav>
+</header>
+
+{#
+vim: filetype=html
+#}

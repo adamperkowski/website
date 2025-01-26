@@ -1,0 +1,22 @@
+{% extends "layouts/base.tera" %}
+
+{% block title %}{% set title = "Error :(" %}{% endblock %}
+{% block description %}{% set description = title %}{% endblock %}
+
+{% block main %}
+<section>
+  <img id="error-image" alt="Error Cat Image"/>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+
+    var imgElement = document.getElementById("error-image");
+    imgElement.src = "https://http.cat/images/" + code + ".jpg";
+    imgElement.alt = "Error " + code;
+  </script>
+</section>
+{% endblock %}
+
+{#
+vim: filetype=html
+#}

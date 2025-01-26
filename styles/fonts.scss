@@ -1,0 +1,19 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Fira Code';
+  src: url("/static/fonts/FiraCode-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-feature-settings: "liga", "tnum", "ss01", "locl";
+  font-variant-ligatures: contextual;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Fira Code';
+  src: url("/static/fonts/FiraCode-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-feature-settings: "liga", "tnum", "ss01", "locl";
+  font-variant-ligatures: contextual;
+}

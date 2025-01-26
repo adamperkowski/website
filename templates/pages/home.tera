@@ -1,8 +1,13 @@
 {% extends "layouts/base.tera" %}
 
 {% block main %}
-<div class="home">
+<div class="home prose">
   <h1 class="title">HELLO WORLD</h1>
+  <p>
+    Hey there! Welcome to my new website. It's kinda under construction right now, but I'm working on it (haven't slept all night). So yeah, if you're actually looking for something useful, you might wanna check out my
+    <a href="https://adamperkowski.github.io">old website</a>
+    or just come back later. Thanks for stopping by!
+  </p>
 </div>
 {% endblock %}
 

@@ -1,8 +1,12 @@
+{% block title %}{% set title = "Adam Perkowski" %}{% endblock %}
+{% block description %}{% set description = "Just a random developer..." %}{% endblock %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light-dark">
     <meta name="darkreader-lock">
 
     <title>{{ title }}</title>
@@ -22,9 +26,13 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
     <link rel="stylesheet" href="/static/styles.css">
+
+    <script>{% include "partials/main.js" %}</script>
   </head>
 
   <body>
+    {% include "partials/header.tera" %}
+
     <main class="main-page">
       {% block main %}{% endblock %}
     </main>
