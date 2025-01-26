@@ -4,6 +4,7 @@
   <nav id="nav" class="align-header-split">
     <div class="left align-header">
       <a class="header-link" href="/">HOME</a>
+      <a class="header-link" href="/projects">PROJECTS</a>
     </div>
 
     <div class="right">

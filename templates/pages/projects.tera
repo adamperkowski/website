@@ -1,0 +1,21 @@
+{% extends "layouts/base.tera" %}
+
+{% block title %}{% set title = "PROJECTS" %}{% endblock %}
+{% block description %}{% set description = "Some stuff I maintain" %}{% endblock %}
+
+{% block main %}
+<div class="reusable-header">
+  <h1 class="title">{{ title }}</h1>
+  <h2 class="description">{{ description }}</h2>
+</div>
+
+<div class="projects">
+  {% for project in projects %}
+    {% include "partials/project.tera" %}
+  {% endfor %}
+</div>
+{% endblock %}
+
+{#
+vim: filetype=html
+#}

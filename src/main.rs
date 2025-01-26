@@ -8,6 +8,7 @@ use tera::Context;
 
 mod static_files;
 mod templates;
+mod data;
 
 use templates::TEMPLATES;
 
@@ -19,8 +20,15 @@ async fn axum() -> shuttle_axum::ShuttleAxum {
     tera_ctx.insert("canonical", "https://adamperkowski.dev");
     tera_ctx.insert("repo", "https://github.com/adamperkowski/website");
 
+    let projects = {
+        let mut ctx = tera_ctx.clone();
+        ctx.insert("projects", &data::projects::PROJECTS);
+        render("projects", &ctx)
+    };
+
     let app = Router::new()
         .route("/", get(render("home", &tera_ctx)))
+        .route("/projects", get(projects))
         .route("/error", get(render("error", &tera_ctx)))
         .route("/static/{*file}", get(static_files::handler))
         .route(

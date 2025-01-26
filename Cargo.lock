@@ -2908,6 +2908,7 @@ dependencies = [
  "lazy_static",
  "mime_guess",
  "rust-embed",
+ "serde",
  "shuttle-axum",
  "shuttle-runtime",
  "tera",
