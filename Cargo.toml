@@ -1,0 +1,16 @@
+[package]
+name = "website"
+version = "0.1.0"
+edition = "2021"
+license = "MIT AND CC-BY-ND-4.0"
+homepage = "https://adamperkowski.dev"
+repository = "https://github.com/adamperkowski/adamperkowski.github.io"
+authors = ["Adam Perkowski <adas1per@protonmnail.com>"]
+
+[dependencies]
+axum = "0.8.1"
+lazy_static = "1.5.0"
+mime_guess = "2.0.5"
+rust-embed = { version = "8.5.0", features = ["include-exclude", "compression"] }
+tera = { version = "1.20.0", default-features = false }
+tokio = { version = "1.43.0", features = ["rt-multi-thread"] }

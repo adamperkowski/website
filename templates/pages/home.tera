@@ -1,0 +1,11 @@
+{% extends "layouts/base.tera" %}
+
+{% block main %}
+<div class="home">
+  <h1 class="title">HELLO WORLD</h1>
+</div>
+{% endblock %}
+
+{#
+vim: filetype=html
+#}
