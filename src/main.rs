@@ -15,7 +15,7 @@ use templates::TEMPLATES;
 async fn axum() -> shuttle_axum::ShuttleAxum {
     let mut tera_ctx = Context::new();
     tera_ctx.insert("author", "Adam Perkowski");
-    tera_ctx.insert("keywords", "");
+    tera_ctx.insert("keywords", "Adam Perkowski, adamperkowski, xx0a_q, xeqo, jule, rust, personal, tech, programming, developer, github, adas1per@protonmail.com");
     tera_ctx.insert("canonical", "https://adamperkowski.dev");
     tera_ctx.insert("repo", "https://github.com/adamperkowski/website");
 

@@ -11,4 +11,4 @@ Website: https://isabelroses.com
 /* SITE */
 Last update: 2025/01/26
 Standards: HTML5, CSS3
-Software: Rust, Markdown, Neovim
+Software: Rust, Axum, SCSS, Tera, Neovim
