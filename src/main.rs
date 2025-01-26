@@ -4,24 +4,15 @@ use axum::{
     routing::get,
     Router,
 };
-use std::{env, net::SocketAddr};
 use tera::Context;
-use tokio::net::TcpListener;
 
 mod static_files;
 mod templates;
 
 use templates::TEMPLATES;
 
-#[tokio::main]
-async fn main() {
-    let port = env::var("PORT").unwrap_or_else(|_| "3000".to_string());
-    let addr = SocketAddr::from(([127, 0, 0, 1], port.parse().unwrap()));
-
-    println!("http://{}", addr);
-
-    let listener = TcpListener::bind(addr).await.unwrap();
-
+#[shuttle_runtime::main]
+async fn axum() -> shuttle_axum::ShuttleAxum {
     let mut tera_ctx = Context::new();
     tera_ctx.insert("title", "Adam Perkowski");
     tera_ctx.insert("author", "Adam Perkowski");
@@ -56,7 +47,7 @@ async fn main() {
         // .route("/sitemap.xml", get(([(header::CONTENT_TYPE, "application/xml")], include_str!("../static/sitemap.xml"))))
         .fallback(get(Redirect::temporary("/error")));
 
-    axum::serve(listener, app).await.unwrap();
+    Ok(app.into())
 }
 
 fn render(page: &str, ctx: &Context) -> Html<String> {
