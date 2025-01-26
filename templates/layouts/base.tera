@@ -1,5 +1,5 @@
 {% block title %}{% set title = "Adam Perkowski" %}{% endblock %}
-{% block description %}{% set description = "Just a random developer..." %}{% endblock %}
+{% block description %}{% set description = "Not a lot to see here really, just my stuff :)" %}{% endblock %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +13,7 @@
     <meta name="author" content="{{ author }}">
     <meta name="description" content="{{ description }}">
     <meta name="keywords" content="{{ keywords }}">
+    <meta property="theme-color" content="#f38ba8">
     <link rel="canonical" href="{{ canonical }}">
 
     <meta property="og:locale" content="en">
