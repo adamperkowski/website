@@ -3,8 +3,9 @@ styles:
 
 run:
   @just styles
-  cargo shuttle run
+  shuttle run
 
 deploy:
+  rm -f static/styles.css
   @just styles
-  cargo shuttle deploy
+  shuttle deploy
