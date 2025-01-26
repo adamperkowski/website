@@ -101,5 +101,5 @@ pub const PROJECTS: &[Project] = &[
         banner: None,
         url: Some("/"),
         repo: Some("https://github.com/adamperkowski/website"),
-    }
+    },
 ];

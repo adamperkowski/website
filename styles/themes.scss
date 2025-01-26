@@ -17,6 +17,27 @@
   code.hljs{color:#cdd6f4};code .hljs-keyword{color:#cba6f7;};code .hljs-built_in{color:#f38ba8};code .hljs-type{color:#f9e2af};code .hljs-literal{color:#fab387};code .hljs-number{color:#fab387};code .hljs-operator{color:#94e2d5};code .hljs-punctuation{color:#bac2de};code .hljs-property{color:#94e2d5};code .hljs-regexp{color:#f5c2e7};code .hljs-string{color:#a6e3a1};code .hljs-char.escape_{color:#a6e3a1};code .hljs-subst{color:#a6adc8};code .hljs-symbol{color:#f2cdcd};code .hljs-variable{color:#cba6f7};code .hljs-variable.language_{color:#cba6f7};code .hljs-variable.constant_{color:#fab387};code .hljs-title{color:#89b4fa};code .hljs-title.class_{color:#f9e2af};code .hljs-title.function_{color:#89b4fa};code .hljs-params{color:#cdd6f4};code .hljs-comment{color:#585b70};code .hljs-doctag{color:#f38ba8};code .hljs-meta{color:#fab387};code .hljs-section{color:#89b4fa};code .hljs-tag{color:#a6adc8};code .hljs-name{color:#cba6f7};code .hljs-attr{color:#89b4fa};code .hljs-attribute{color:#a6e3a1};code .hljs-bullet{color:#94e2d5};code .hljs-code{color:#a6e3a1};code .hljs-emphasis{color:#f38ba8;font-style:italic};code .hljs-strong{color:#f38ba8;font-weight:bold};code .hljs-formula{color:#94e2d5};code .hljs-link{color:#74c7ec;font-style:italic};code .hljs-quote{color:#a6e3a1;font-style:italic};code .hljs-selector-tag{color:#f9e2af};code .hljs-selector-id{color:#89b4fa};code .hljs-selector-class{color:#94e2d5};code .hljs-selector-attr{color:#cba6f7};code .hljs-selector-pseudo{color:#94e2d5};code .hljs-template-tag{color:#f2cdcd};code .hljs-template-variable{color:#f2cdcd};code .hljs-addition{color:#a6e3a1};code .hljs-deletion{color:#f38ba8};
 }
 
+// This theme is based on the Biscuit Color Scheme
+// https://github.com/Biscuit-Theme/biscuit
+.biscuit {
+  --fg: #F4E6D2;
+  --fg-lighter: #B6A8A5;
+
+  --bg: #181515;
+  --bg-lighter: #221E1E;
+
+  --card: #423939;
+  --special: var(--red);
+
+  --blue: #4A5A8D;
+  --green: #629386;
+  --yellow: #E39C45;
+  --purple: #9F569A;
+  --red: #CA3F3F;
+
+  code.hljs{color:#F4E6D2};code .hljs-keyword{color:#9F569A;};code .hljs-built_in{color:#CA3F3F};code .hljs-type{color:#E39C45};code .hljs-literal{color:#E46A3A};code .hljs-number{color:#E46A3A};code .hljs-operator{color:#629386};code .hljs-punctuation{color:#B6A8A5};code .hljs-property{color:#629386};code .hljs-regexp{color:#C45497};code .hljs-string{color:#989F56};code .hljs-char.escape_{color:#989F56};code .hljs-subst{color:#B6A8A5};code .hljs-symbol{color:#E46A3A};code .hljs-variable{color:#9F569A};code .hljs-variable.language_{color:#9F569A};code .hljs-variable.constant_{color:#E46A3A};code .hljs-title{color:#517894};code .hljs-title.class_{color:#E39C45};code .hljs-title.function_{color:#517894};code .hljs-params{color:#F4E6D2};code .hljs-comment{color:#423939};code .hljs-doctag{color:#CA3F3F};code .hljs-meta{color:#E46A3A};code .hljs-section{color:#517894};code .hljs-tag{color:#B6A8A5};code .hljs-name{color:#9F569A};code .hljs-attr{color:#517894};code .hljs-attribute{color:#989F56};code .hljs-bullet{color:#629386};code .hljs-code{color:#989F56};code .hljs-emphasis{color:#CA3F3F;font-style:italic};code .hljs-strong{color:#CA3F3F;font-weight:bold};code .hljs-formula{color:#629386};code .hljs-link{color:#4A5A8D;font-style:italic};code .hljs-quote{color:#989F56;font-style:italic};code .hljs-selector-tag{color:#E39C45};code .hljs-selector-id{color:#517894};code .hljs-selector-class{color:#629386};code .hljs-selector-attr{color:#9F569A};code .hljs-selector-pseudo{color:#629386};code .hljs-template-tag{color:#E46A3A};code .hljs-template-variable{color:#E46A3A};code .hljs-addition{color:#989F56};code .hljs-deletion{color:#CA3F3F};
+}
+
 :root {
   --default-border: 2px solid var(--card);
 }

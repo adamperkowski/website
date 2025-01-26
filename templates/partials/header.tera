@@ -11,6 +11,7 @@
       <form name="themes" id="form-themes" class="theme-switcher">
         <select name="themes" id="themes" aria-label="Mr. Theme Switcher">
           <option value="cat-mocha">Catppuccin Mocha</option>
+          <option value="biscuit">Biscuit</option>
         </select>
       </form>
     </div>

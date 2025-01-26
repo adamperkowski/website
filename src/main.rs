@@ -6,9 +6,9 @@ use axum::{
 };
 use tera::Context;
 
+mod data;
 mod static_files;
 mod templates;
-mod data;
 
 use templates::TEMPLATES;
 
