@@ -5,7 +5,7 @@ eventSource.onmessage = function(event) {
   notification.className = 'notification';
   notification.innerHTML = event.data;
   document.body.appendChild(notification);
-  console.log('SSE notification: ', event.data);
+  console.log('SSE notification!');
 
   setTimeout(() => {
     notification.classList.add('notification-remove');

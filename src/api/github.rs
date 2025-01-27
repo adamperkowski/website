@@ -64,14 +64,17 @@ pub async fn handler(
         return (StatusCode::OK, "ignoring action != created".to_string()).into_response();
     }
 
-    let message = format!(
-        "{} just starred {}",
+    println!(
+        "github: {} just starred {}",
         payload.sender.login, payload.repository.full_name
     );
 
-    println!("github: {message}");
-
-    let _ = sse_state.tx.send(message);
+    if let Err(e) = sse_state.tx.send(format!(
+        "<a href='https://github.com/{0}' target='_blank'>{0}</a> just starred <a href='https://github.com/{1}' target='_blank'>{1}</a>!",
+        payload.sender.login, payload.repository.full_name
+    )) {
+        println!("failed to send to SSE: {e}")
+    };
 
     (StatusCode::OK, "ok".to_string()).into_response()
 }
