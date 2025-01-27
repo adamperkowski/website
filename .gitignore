@@ -1,5 +1,6 @@
 target
 static/styles.css
+Secrets.toml
 
 .shuttle*
 Secrets*.toml

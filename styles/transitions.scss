@@ -6,7 +6,13 @@
   transition: background-color 0.5s ease, color 0.25s ease, border-color 0.5s ease;
 }
 
-/* blog preview animations */
+.notification {
+  animation: show-notification 0.5s ease;
+}
+
+.notification-remove {
+  animation: unshow-notification 0.5s ease;
+}
 
 /* left column */
 .blog-preview:nth-child(2n + 1) {
@@ -95,5 +101,17 @@ footer {
   from {
     transform: translate(100%, -100%);
     opacity: 0;
+  }
+}
+
+@keyframes show-notification {
+  from {
+    transform: translateY(100%) perspective(100px) rotateX(90deg);
+  }
+}
+
+@keyframes unshow-notification {
+  to {
+    transform: translateY(100%) perspective(100px) rotateX(90deg);
   }
 }

@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="/static/styles.css">
 
     <script>{% include "partials/main.js" %}</script>
+    <script>{% include "partials/notification.js" %}</script>
   </head>
 
   <body>
