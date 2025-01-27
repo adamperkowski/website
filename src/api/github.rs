@@ -37,6 +37,14 @@ pub async fn handler(
 ) -> impl IntoResponse {
     let secret = std::env::var("GITHUB_SECRET").expect("GITHUB_SECRET not set (somehow?)");
 
+    if !headers.contains_key("X-Hub-Signature-256") {
+        return (
+            StatusCode::BAD_REQUEST,
+            "missing X-Hub-Signature-256 header".to_string(),
+        )
+            .into_response();
+    }
+
     if let Err(e) = verify_signature(secret.as_bytes(), &headers["X-Hub-Signature-256"], &payload) {
         return (
             StatusCode::FORBIDDEN,
