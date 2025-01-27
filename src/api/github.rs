@@ -48,11 +48,7 @@ pub async fn handler(
     let payload: WebhookPayload = match serde_json::from_str(&payload) {
         Ok(payload) => payload,
         Err(e) => {
-            return (
-                StatusCode::BAD_REQUEST,
-                format!("invalid payload: {}", e.to_string()),
-            )
-                .into_response();
+            return (StatusCode::BAD_REQUEST, format!("invalid payload: {}", e)).into_response();
         }
     };
 
@@ -78,7 +74,7 @@ fn verify_signature(
     payload: &String,
 ) -> Result<(), String> {
     let signature_bytes = decode(
-        &signature
+        signature
             .to_str()
             .map_err(|_| "invalid header value")?
             .trim_start_matches("sha256="),
