@@ -98,7 +98,7 @@ pub const PROJECTS: &[Project] = &[
         description: "The source code of this website",
         emoji: Some("🫨"),
         icon: None,
-        banner: None,
+        banner: Some("websitestats.webp"),
         url: Some("/"),
         repo: Some("https://github.com/adamperkowski/website"),
     },
