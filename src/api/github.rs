@@ -83,7 +83,7 @@ pub async fn handler(
     (StatusCode::OK, "ok".to_string()).into_response()
 }
 
-async fn handle_star(payload: &String) -> Result<String, (StatusCode, String)> {
+async fn handle_star(payload: &str) -> Result<String, (StatusCode, String)> {
     let payload: StarPayload = match serde_json::from_str(payload) {
         Ok(payload) => payload,
         Err(e) => {
@@ -106,7 +106,7 @@ async fn handle_star(payload: &String) -> Result<String, (StatusCode, String)> {
     ))
 }
 
-async fn handle_sponsorship(payload: &String) -> Result<String, (StatusCode, String)> {
+async fn handle_sponsorship(payload: &str) -> Result<String, (StatusCode, String)> {
     let payload: SponsorshipPayload = match serde_json::from_str(payload) {
         Ok(payload) => payload,
         Err(e) => {

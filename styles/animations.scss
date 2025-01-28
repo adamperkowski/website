@@ -4,6 +4,7 @@
 
 * {
   transition: background-color 0.5s ease, color 0.25s ease, border-color 0.5s ease;
+  -moz-transition: background-color 0.5s ease, color 0.25s ease, border-color 0.5s ease;
 }
 
 .notification {
@@ -12,6 +13,16 @@
 
 .notification-remove {
   animation: unshow-notification 0.5s ease;
+}
+
+#error-image {
+  position: absolute;
+  z-index: -1;
+  width: 500px;
+  height: 400px;
+  -webkit-animation: moveErrorX 2s linear 0s infinite alternate, moveErrorY 3.4s linear 0s infinite alternate;
+  -moz-animation: moveErrorX 2s linear 0s infinite alternate, moveErrorY 3.4s linear 0s infinite alternate;
+  animation: moveErrorX 2s linear 0s infinite alternate, moveErrorY 3.4s linear 0s infinite alternate;
 }
 
 /* left column */
@@ -114,4 +125,24 @@ footer {
   to {
     transform: translateY(100%) perspective(100px) rotateX(90deg);
   }
+}
+
+@-webkit-keyframes moveErrorX {
+  from { left: 0; } to { left: calc(100% - 500px); }
+}
+@-moz-keyframes moveErrorX {
+  from { left: 0; } to { left: calc(100% - 500px); }
+}
+@keyframes moveErrorX {
+  from { left: 0; } to { left: calc(100% - 500px); }
+}
+
+@-webkit-keyframes moveErrorY {
+  from { top: 0; } to { top: calc(100% - 400px); }
+}
+@-moz-keyframes moveErrorY {
+  from { top: 0; } to { top: calc(100% - 400px); }
+}
+@keyframes moveErrorY {
+  from { top: 0; } to { top: calc(100% - 400px); }
 }

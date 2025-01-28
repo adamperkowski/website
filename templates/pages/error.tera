@@ -1,20 +1,25 @@
 {% extends "layouts/base.tera" %}
 
-{% block title %}{% set title = "Error :(" %}{% endblock %}
-{% block description %}{% set description = title %}{% endblock %}
+{% block title %}{% set title = "Error" %}{% endblock %}
+{% block description %}{% set description = "I am so sorry..." %}{% endblock %}
 
 {% block main %}
-<section>
-  <img id="error-image" alt="Error Cat Image"/>
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
+<img id="error-image" alt="Error Cat Image" width="500" height="500"/>
+<script>
+  const navigationData = window.performance.getEntries().find(e => e.entryType === "navigation");
 
-    var imgElement = document.getElementById("error-image");
-    imgElement.src = "https://http.cat/images/" + code + ".jpg";
-    imgElement.alt = "Error " + code;
-  </script>
-</section>
+  var code = 404;
+
+  if (navigationData.responseStatus != undefined) {
+    code = navigationData.responseStatus
+  }
+
+  document.title = document.title + " " + code + " :(";
+
+  var imgElement = document.getElementById("error-image");
+  imgElement.src = "https://http.cat/images/" + code + ".jpg";
+  imgElement.alt = "Error " + code;
+</script>
 {% endblock %}
 
 {#

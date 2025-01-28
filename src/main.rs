@@ -1,11 +1,10 @@
-use std::sync::Arc;
-
 use axum::{
-    http::header,
-    response::{Html, Redirect},
+    http::{header, StatusCode},
+    response::Html,
     routing::{get, post},
     Router,
 };
+use std::sync::Arc;
 use tera::Context;
 
 mod api;
@@ -48,7 +47,6 @@ async fn axum(
     let app = Router::new()
         .route("/", get(render("home", &tera_ctx)))
         .route("/projects", get(projects))
-        .route("/error", get(render("error", &tera_ctx)))
         .nest("/api", api_routes)
         .route("/static/{*file}", get(static_files::handler))
         .route(
@@ -73,7 +71,7 @@ async fn axum(
             )),
         )
         // .route("/sitemap.xml", get(([(header::CONTENT_TYPE, "application/xml")], include_str!("../static/sitemap.xml"))))
-        .fallback(get(Redirect::temporary("/error")));
+        .fallback((StatusCode::NOT_FOUND, render("error", &tera_ctx)));
 
     Ok(app.into())
 }
