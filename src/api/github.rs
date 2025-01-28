@@ -12,7 +12,7 @@ use std::sync::Arc;
 use crate::sse::SseState;
 
 #[derive(Serialize, Deserialize)]
-pub struct WebhookPayload {
+pub struct StarPayload {
     action: String,
     repository: Repository,
     sender: User,
@@ -28,6 +28,19 @@ pub struct User {
     login: String,
 }
 
+#[derive(Serialize, Deserialize)]
+pub struct SponsorshipPayload {
+    action: String,
+    sponsor: User,
+    privacy_level: String,
+    tier: SponsorshipTier,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct SponsorshipTier {
+    is_one_time: bool,
+}
+
 type HmacSha256 = Hmac<Sha256>;
 
 pub async fn handler(
@@ -37,10 +50,10 @@ pub async fn handler(
 ) -> impl IntoResponse {
     let secret = std::env::var("GITHUB_SECRET").expect("GITHUB_SECRET not set (somehow?)");
 
-    if !headers.contains_key("X-Hub-Signature-256") {
+    if !headers.contains_key("X-Hub-Signature-256") || !headers.contains_key("X-GitHub-Event") {
         return (
             StatusCode::BAD_REQUEST,
-            "missing X-Hub-Signature-256 header".to_string(),
+            "missing required headers".to_string(),
         )
             .into_response();
     }
@@ -53,15 +66,33 @@ pub async fn handler(
             .into_response();
     }
 
-    let payload: WebhookPayload = match serde_json::from_str(&payload) {
+    let message = match match headers["X-GitHub-Event"].to_str().unwrap_or_default() {
+        "ping" => return (StatusCode::OK, "pong".to_string()).into_response(),
+        "star" => handle_star(&payload).await,
+        "sponsorship" => handle_sponsorship(&payload).await,
+        _ => Err((StatusCode::BAD_REQUEST, "unknown event".to_string())),
+    } {
+        Ok(m) => m,
+        Err(e) => return e.into_response(),
+    };
+
+    if let Err(e) = sse_state.tx.send(message) {
+        println!("failed to send to SSE: {e}")
+    };
+
+    (StatusCode::OK, "ok".to_string()).into_response()
+}
+
+async fn handle_star(payload: &String) -> Result<String, (StatusCode, String)> {
+    let payload: StarPayload = match serde_json::from_str(payload) {
         Ok(payload) => payload,
         Err(e) => {
-            return (StatusCode::BAD_REQUEST, format!("invalid payload: {}", e)).into_response();
+            return Err((StatusCode::BAD_REQUEST, format!("invalid payload: {e}")));
         }
     };
 
     if payload.action != "created" {
-        return (StatusCode::OK, "ignoring action != created".to_string()).into_response();
+        return Err((StatusCode::OK, "ignoring action != created".to_string()));
     }
 
     println!(
@@ -69,14 +100,43 @@ pub async fn handler(
         payload.sender.login, payload.repository.full_name
     );
 
-    if let Err(e) = sse_state.tx.send(format!(
+    Ok(format!(
         "<a href='https://github.com/{0}' target='_blank'>{0}</a> just starred <a href='https://github.com/{1}' target='_blank'>{1}</a>!",
         payload.sender.login, payload.repository.full_name
-    )) {
-        println!("failed to send to SSE: {e}")
+    ))
+}
+
+async fn handle_sponsorship(payload: &String) -> Result<String, (StatusCode, String)> {
+    let payload: SponsorshipPayload = match serde_json::from_str(payload) {
+        Ok(payload) => payload,
+        Err(e) => {
+            return Err((StatusCode::BAD_REQUEST, format!("invalid payload: {e}")));
+        }
     };
 
-    (StatusCode::OK, "ok".to_string()).into_response()
+    if payload.action != "created" {
+        return Err((StatusCode::OK, "ignoring action != created".to_string()));
+    }
+
+    if payload.privacy_level == "SECRET" {
+        return Err((StatusCode::OK, "ignoring SECRET sponsorship".to_string()));
+    }
+
+    let tier = if payload.tier.is_one_time {
+        "one-time donation"
+    } else {
+        "sponsorship subscription"
+    };
+
+    println!(
+        "github: thanks for the {1}, {0}",
+        payload.sponsor.login, tier
+    );
+
+    Ok(format!(
+        "Thanks for the <a href='https://github.com/sponsors/adamperkowski' target='_blank'>{1}</a>, <a href='https://github.com/{0}' target='_blank'>{0}</a>!",
+        payload.sponsor.login, tier
+    ))
 }
 
 fn verify_signature(
