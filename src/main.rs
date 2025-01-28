@@ -47,6 +47,7 @@ async fn axum(
     let app = Router::new()
         .route("/", get(render("home", &tera_ctx)))
         .route("/projects", get(projects))
+        .route("/donate", get(render("donate", &tera_ctx)))
         .nest("/api", api_routes)
         .route("/static/{*file}", get(static_files::handler))
         .route(

@@ -54,3 +54,27 @@
 .text-special {
   color: var(--special);
 }
+
+.text-hide {
+  display: inline-block;
+  max-width: 0;
+  vertical-align: bottom;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.text-unhide {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: bottom;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+p:hover .text-hide {
+  max-width: 100%;
+}
+
+p:hover .text-unhide {
+  max-width: 0;
+}

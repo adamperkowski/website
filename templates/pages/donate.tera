@@ -1,0 +1,45 @@
+{% extends "layouts/base.tera" %}
+
+{% block title %}{% set title = "DONATE" %}{% endblock %}
+{% block description %}{% set description = "Huge thanks for considering to support me!" %}{% endblock %}
+
+{% block main %}
+<div class="reusable-header">
+  <h1 class="title">{{ title }}</h1>
+  <h2 class="description">{{ description }}</h2>
+</div>
+
+<div class="prose">
+  <p>
+    If you want to support the work I do, feel free to donate through any of the following:
+  </p>
+  <br>
+  <h3>GitHub Sponsors</h3>
+  <p>
+    &ensp;This is the best way to support me. You can choose between monthly payments or one-time donations.
+    <br>
+    &ensp;Plus, you get some cool perks like a sponsor badge on your and my GitHub profile, a notification and mention on this website.
+    <br>
+    &ensp;Click the link below to check it out!
+    <br>
+    &emsp;<a href="https://github.com/sponsors/adamperkowski" target="_blank">github.com/sponsors/adamperkowski</a>
+  </p>
+  <br>
+  <h3>Crypto</h3>
+  <p>
+    &ensp;You can also donate some crypto to the following addresses (<span class="text-special">hover</span> to reveal):
+    <p>&emsp;XMR:&nbsp;&nbsp;&nbsp;&nbsp;43xyn5nV<span class="text-hide">AxVWswSLYU9NWq62GQHWsLGj6fzGXmYDVWkbgm6uh42CXxJH5vcM7KoN1LQzog5rVPoz7eK3sMR8vU764BMbbj4</span><span class="text-special text-unhide">...</span></p>
+    <p>&emsp;SOL:&nbsp;&nbsp;&nbsp;&nbsp;HKWUhKr1<span class="text-hide">H4tSQ2kN83oTXhLsbeAdHQBS4EPei76eFdz1</span><span class="text-special text-unhide">...</span></p>
+    <p>&emsp;ERC-20:&nbsp;0x8cb2C3<span class="text-hide">8690bc6757727b26558e078a711c1127cB</span><span class="text-special text-unhide">...</span></p>
+  </p>
+  <br>
+  <h3>PayPal</h3>
+  <p>
+    &ensp;If you prefer PayPal, you can use the following link:
+    <br>
+    &emsp;<a href="https://paypal.me/afkpx" target="_blank">paypal.me/adamperkowski</a>
+{% endblock %}
+
+{#
+vim: filetype=html
+#}
