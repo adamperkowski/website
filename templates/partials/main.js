@@ -34,6 +34,6 @@ function getTheme() {
   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     return "cat-mocha";
   } else {
-    return "light";
+    return "cat-latte";
   }
 }
