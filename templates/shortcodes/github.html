@@ -1,0 +1,14 @@
+<a id="github-stats-{{ github_stats_type }}" href="https://github.com/adamperkowski" target="_blank">Loading...</a>
+<script>
+  fetch('https://api.github.com/users/adamperkowski')
+    .then(response => response.json())
+    .then(data => {
+      var githubStatsElement = document.getElementById('github-stats-{{ github_stats_type }}');
+      githubStatsElement.innerText = data.{{ github_stats_type }};
+      {% if github_stats_type == "followers" %}
+        githubStatsElement.href += '?tab=followers';
+      {% elif github_stats_type == "public_repos" %}
+        githubStatsElement.href += '?tab=repositories';
+      {% endif %}
+    });
+</script>

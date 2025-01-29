@@ -1,0 +1,8 @@
+<a id="wakatime-stats" href="https://wakatime.com/@adamperkowski" target="_blank">Loading...</a>
+<script>
+  fetch('https://wakatime.com/share/@adamperkowski/8308c299-2795-4762-9c92-e05e6fb6a773.json')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('wakatime-stats').innerText = data.data.grand_total.human_readable_total_including_other_language;
+    });
+</script>

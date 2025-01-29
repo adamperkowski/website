@@ -46,6 +46,10 @@ a {
   }
 }
 
+ul {
+  list-style-type: square;
+}
+
 ::selection {
   color: var(--bg-lighter);
   background-color: var(--fg-lighter);
