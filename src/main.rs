@@ -1,6 +1,8 @@
 use axum::{
-    http::{header, StatusCode},
-    response::Html,
+    body::Body,
+    http::{header, Request, Response, StatusCode, Uri},
+    middleware,
+    response::{Html, IntoResponse, Redirect},
     routing::{get, post},
     Router,
 };
@@ -46,6 +48,7 @@ async fn axum(
 
     let app = Router::new()
         .route("/", get(render("home", &tera_ctx)))
+        .layer(middleware::from_fn(check_url))
         .route("/projects", get(projects))
         .route("/donate", get(render("donate", &tera_ctx)))
         .nest("/api", api_routes)
@@ -81,4 +84,39 @@ fn render(page: &str, ctx: &Context) -> Html<String> {
     let path = format!("pages/{page}.tera");
 
     Html(TEMPLATES.render(&path, ctx).unwrap())
+}
+
+async fn check_url(
+    req: Request<Body>,
+    next: middleware::Next,
+) -> Result<Response<Body>, StatusCode> {
+    let host = req
+        .headers()
+        .get("host")
+        .and_then(|h| h.to_str().ok())
+        .unwrap_or_default();
+
+    #[cfg(debug_assertions)]
+    let expected_host = "127.0.0.1:8000";
+    #[cfg(not(debug_assertions))]
+    let expected_host = "adamperkowski.dev";
+
+    if host != expected_host {
+        let uri = Uri::builder()
+            .scheme("https")
+            .authority(expected_host)
+            .path_and_query(
+                req.uri()
+                    .path_and_query()
+                    .map(|pq| pq.as_str())
+                    .unwrap_or("/"),
+            )
+            .build()
+            .expect("failed to build URI")
+            .to_string();
+
+        return Ok(Redirect::permanent(&uri).into_response());
+    }
+
+    Ok(next.run(req).await)
 }
