@@ -45,3 +45,8 @@ a {
     text-decoration: underline;
   }
 }
+
+::selection {
+  color: var(--bg-lighter);
+  background-color: var(--fg-lighter);
+}
