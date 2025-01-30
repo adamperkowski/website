@@ -37,7 +37,7 @@
   pre:has(code) {
     padding: 1rem;
     background-color: var(--bg-lighter);
-    border: var(--border, var(--default-border));
+    border: var(--border, var(--border-default));
     line-height: 1.25rem;
     text-wrap: wrap;
   }

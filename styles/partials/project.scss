@@ -12,7 +12,7 @@
 }
 
 .project {
-  border: var(--border, var(--default-border));
+  border: var(--border, var(--border-default));
   position: relative;
   display: flex;
   height: 9rem;

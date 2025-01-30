@@ -57,5 +57,6 @@
 }
 
 :root {
-  --default-border: 2px solid var(--card);
+  --border-default: 2px solid var(--card);
+  --border-dashed: 2px dashed var(--card);
 }

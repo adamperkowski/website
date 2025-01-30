@@ -41,8 +41,7 @@ a {
   text-decoration: none;
 
   &:hover {
-    color: var(--special);
-    text-decoration: underline;
+    background-color: var(--bg-lighter);
   }
 }
 

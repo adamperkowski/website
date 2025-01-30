@@ -1,18 +1,18 @@
 .theme-switcher {
-  border: var(--border, var(--default-border));
+  border: var(--border, var(--border-default));
   padding: 0.5rem;
 
   #themes {
     border: none;
     color: var(--fg);
-    background: transparent;
+    background: var(--bg);
     width: 100%;
     height: 100%;
   };
 }
 
 .header-link {
-  border: var(--border, var(--default-border));
+  border: var(--border, var(--border-dashed));
   padding: 0.5rem;
 }
 
@@ -35,7 +35,7 @@
 
 #mobile-burger {
   display: none;
-  border: var(--border, var(--default-border));
+  border: var(--border, var(--border-default));
   padding: 0.5rem;
   color: var(--fg);
   background: var(--bg-lighter);
