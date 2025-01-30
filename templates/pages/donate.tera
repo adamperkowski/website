@@ -28,10 +28,18 @@
   <h3>Crypto</h3>
   <p>
     &ensp;You can also donate some crypto to the following addresses (<span class="text-special">hover</span> to reveal):
-    <p>&emsp;XMR:&nbsp;&nbsp;&nbsp;&nbsp;43xyn5nV<span class="text-hide">AxVWswSLYU9NWq62GQHWsLGj6fzGXmYDVWkbgm6uh42CXxJH5vcM7KoN1LQzog5rVPoz7eK3sMR8vU764BMbbj4</span><span class="text-special text-unhide">...</span></p>
-    <p>&emsp;SOL:&nbsp;&nbsp;&nbsp;&nbsp;HKWUhKr1<span class="text-hide">H4tSQ2kN83oTXhLsbeAdHQBS4EPei76eFdz1</span><span class="text-special text-unhide">...</span></p>
-    <p>&emsp;ERC-20:&nbsp;0x8cb2C3<span class="text-hide">8690bc6757727b26558e078a711c1127cB</span><span class="text-special text-unhide">...</span></p>
   </p>
+  <div class="crypto-list">
+    <p>
+      &emsp;XMR:&nbsp;&nbsp;&nbsp;&nbsp;<code>43xyn5nV<span class="text-hide">AxVWswSLYU9NWq62GQHWsLGj6fzGXmYDVWkbgm6uh42CXxJH5vcM7KoN1LQzog5rVPoz7eK3sMR8vU764BMbbj4</span></code><span class="text-special text-unhide">...</span>
+    </p>
+    <p>
+      &emsp;SOL:&nbsp;&nbsp;&nbsp;&nbsp;<code>HKWUhKr1<span class="text-hide">H4tSQ2kN83oTXhLsbeAdHQBS4EPei76eFdz1</span></code><span class="text-special text-unhide">...</span>
+    </p>
+    <p>
+      &emsp;ERC-20:&nbsp;<code>0x8cb2C3<span class="text-hide">8690bc6757727b26558e078a711c1127cB</span></code><span class="text-special text-unhide">...</span>
+    </p>
+  </div>
   <br>
   <h3>PayPal</h3>
   <p>
