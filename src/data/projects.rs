@@ -77,7 +77,7 @@ pub const PROJECTS: &[Project] = &[
     },
     Project {
         name: "dwm",
-        description: "My build of dwm + some dotfiles",
+        description: "My build of dwm + st + some dotfiles",
         emoji: Some("🪟"),
         icon: None,
         banner: None,
