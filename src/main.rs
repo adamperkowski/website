@@ -74,7 +74,13 @@ async fn axum(
                 include_bytes!("../static/favicon.ico"),
             )),
         )
-        // .route("/sitemap.xml", get(([(header::CONTENT_TYPE, "application/xml")], include_str!("../static/sitemap.xml"))))
+        .route(
+            "/sitemap.xml",
+            get((
+                [(header::CONTENT_TYPE, "application/xml")],
+                include_str!("../static/sitemap.xml"),
+            )),
+        )
         .fallback((StatusCode::NOT_FOUND, render("error", &tera_ctx)));
 
     Ok(app.into())

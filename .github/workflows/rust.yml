@@ -16,6 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Just
+        uses: extractions/setup-just@v2
+
+      - name: Prepare
+        run: |
+          just sitemap
+
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 

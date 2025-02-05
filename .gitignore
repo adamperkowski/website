@@ -1,5 +1,6 @@
 target
 static/styles.css
+static/sitemap.xml
 Secrets.toml
 
 .shuttle*
