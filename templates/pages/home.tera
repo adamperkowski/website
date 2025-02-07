@@ -12,7 +12,7 @@
   <p>
     I write code, break working code, fix broken code, and mostly just code.
     I also like to play games and listen to
-    <code class="language-regex">/(.*)(metal||core)/</code>
+    <code class="language-regex">/.*(metal|core)/</code>
     music. I have a severe addiction to Linux, CLIs, TUIs, Rust,
     <a href="https://jule.dev">Jule</a>,
     and Vim.
