@@ -7,7 +7,8 @@ sitemap:
 run:
   @just styles
   @just sitemap
-  shuttle run
+  # shuttle run
+  cargo watch -x 'shuttle run'
 
 deploy:
   rm -f static/{styles.css,sitemap.xml}
