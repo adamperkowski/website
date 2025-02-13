@@ -31,6 +31,11 @@ pub struct User {
 #[derive(Serialize, Deserialize)]
 pub struct SponsorshipPayload {
     action: String,
+    sponsorship: Sponsorship,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Sponsorship {
     sponsor: User,
     privacy_level: String,
     tier: SponsorshipTier,
@@ -118,11 +123,11 @@ async fn handle_sponsorship(payload: &str) -> Result<String, (StatusCode, String
         return Err((StatusCode::OK, "ignoring action != created".to_string()));
     }
 
-    if payload.privacy_level == "SECRET" {
+    if payload.sponsorship.privacy_level == "SECRET" {
         return Err((StatusCode::OK, "ignoring SECRET sponsorship".to_string()));
     }
 
-    let tier = if payload.tier.is_one_time {
+    let tier = if payload.sponsorship.tier.is_one_time {
         "one-time donation"
     } else {
         "sponsorship subscription"
@@ -130,12 +135,12 @@ async fn handle_sponsorship(payload: &str) -> Result<String, (StatusCode, String
 
     println!(
         "github: thanks for the {1}, {0}",
-        payload.sponsor.login, tier
+        payload.sponsorship.sponsor.login, tier
     );
 
     Ok(format!(
         "Thanks for the <a href='https://github.com/sponsors/adamperkowski' target='_blank'>{1}</a>, <a href='https://github.com/{0}' target='_blank'>{0}</a>!",
-        payload.sponsor.login, tier
+        payload.sponsorship.sponsor.login, tier
     ))
 }
 
