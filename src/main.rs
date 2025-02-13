@@ -10,6 +10,7 @@ use std::sync::Arc;
 use tera::Context;
 
 mod api;
+mod constants;
 mod data;
 mod sse;
 mod static_files;
@@ -17,22 +18,36 @@ mod templates;
 
 use templates::TEMPLATES;
 
+/// The main entry point for the server.
+// It is annoted with `#[shuttle_runtime::main]` to make it work with shuttle.dev.
+// To run this server locally, you can either use `just run` (which is a wrapper around `shuttle run`) or add:
+// ```
+// #[tokio::main]
+// async fn main() {
+//     let addr = SocketAddr::from(([127, 0, 0, 1], 8000));
+//     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
+//     // ...
+//     axum::serve(listener, app).await.unwrap();
+// }
+// ```
 #[shuttle_runtime::main]
 async fn axum(
     #[shuttle_runtime::Secrets] secrets: shuttle_runtime::SecretStore,
 ) -> shuttle_axum::ShuttleAxum {
     std::env::set_var(
-        "GITHUB_SECRET",
-        secrets.get("GITHUB_SECRET").expect("GITHUB_SECRET not set"),
+        constants::GITHUB_SECRET_VAR,
+        secrets.get(constants::GITHUB_SECRET_VAR).unwrap(),
     );
 
     let sse_state = sse::init();
 
     let mut tera_ctx = Context::new();
-    tera_ctx.insert("author", "Adam Perkowski");
-    tera_ctx.insert("keywords", "Adam Perkowski, adamperkowski, xx0a_q, xeqo, jule, rust, personal, tech, programming, developer, github, adas1per@protonmail.com");
-    tera_ctx.insert("canonical", "https://adamperkowski.dev");
-    tera_ctx.insert("repo", "https://github.com/adamperkowski/website");
+    tera_ctx.insert("author", constants::AUTHOR);
+    tera_ctx.insert("keywords", constants::KEYWORDS);
+    tera_ctx.insert("canonical", &format!("https://{}", constants::HOST));
+    tera_ctx.insert("repo", constants::REPO);
+
+    // TODO: might want to look into automating the router & sitemap generation
 
     let projects = {
         let mut ctx = tera_ctx.clone();
@@ -92,6 +107,8 @@ fn render(page: &str, ctx: &Context) -> Html<String> {
     Html(TEMPLATES.render(&path, ctx).unwrap())
 }
 
+/// Middleware to check the URL client is accessing and redirect if necessary.
+/// This ensures the only way to access the site is through the official domain.
 async fn check_url(
     req: Request<Body>,
     next: middleware::Next,
@@ -105,24 +122,24 @@ async fn check_url(
     #[cfg(debug_assertions)]
     let expected_host = "127.0.0.1:8000";
     #[cfg(not(debug_assertions))]
-    let expected_host = "adamperkowski.dev";
+    let expected_host = constants::HOST;
 
-    if host != expected_host {
-        let uri = Uri::builder()
-            .scheme("https")
-            .authority(expected_host)
-            .path_and_query(
-                req.uri()
-                    .path_and_query()
-                    .map(|pq| pq.as_str())
-                    .unwrap_or("/"),
-            )
-            .build()
-            .expect("failed to build URI")
-            .to_string();
-
-        return Ok(Redirect::permanent(&uri).into_response());
+    if host == expected_host {
+        return Ok(next.run(req).await);
     }
 
-    Ok(next.run(req).await)
+    let p_and_q = req
+        .uri()
+        .path_and_query()
+        .map(|pq| pq.as_str())
+        .unwrap_or("/");
+    let uri = Uri::builder()
+        .scheme("https")
+        .authority(expected_host)
+        .path_and_query(p_and_q)
+        .build()
+        .expect("failed to build URI")
+        .to_string();
+
+    Ok(Redirect::permanent(&uri).into_response())
 }

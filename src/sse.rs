@@ -10,11 +10,13 @@ pub struct SseState {
     pub tx: broadcast::Sender<String>,
 }
 
+/// Initialize the SSE state.
 pub fn init() -> SseState {
     let (tx, _rx) = broadcast::channel::<String>(100);
     SseState { tx }
 }
 
+/// The event handler yuuuup...
 pub async fn handler(
     State(state): State<Arc<SseState>>,
 ) -> Sse<impl tokio_stream::Stream<Item = Result<Event, Infallible>>> {

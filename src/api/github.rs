@@ -1,3 +1,4 @@
+//! Oh come on, not this shit again...
 use axum::{
     extract::State,
     http::{HeaderMap, HeaderValue, StatusCode},
@@ -9,6 +10,7 @@ use serde::{Deserialize, Serialize};
 use sha2::Sha256;
 use std::sync::Arc;
 
+use crate::constants;
 use crate::sse::SseState;
 
 #[derive(Serialize, Deserialize)]
@@ -53,7 +55,7 @@ pub async fn handler(
     headers: HeaderMap,
     payload: String,
 ) -> impl IntoResponse {
-    let secret = std::env::var("GITHUB_SECRET").expect("GITHUB_SECRET not set (somehow?)");
+    let secret = std::env::var(constants::GITHUB_SECRET_VAR).unwrap();
 
     if !headers.contains_key("X-Hub-Signature-256") || !headers.contains_key("X-GitHub-Event") {
         return (
@@ -144,6 +146,7 @@ async fn handle_sponsorship(payload: &str) -> Result<String, (StatusCode, String
     ))
 }
 
+/// I'm sorry but why the FUCK is there no crate I can use for this??
 fn verify_signature(
     secret: &[u8],
     signature: &HeaderValue,
