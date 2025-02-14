@@ -4,6 +4,9 @@ styles:
 sitemap:
   URL='https://adamperkowski.dev' bash scripts/sitemap.sh
 
+webhook:
+  URL='https://adamperkowski.dev' OWNER='adamperkowski' bash scripts/webhook-all.sh
+
 run:
   @just styles
   @just sitemap
