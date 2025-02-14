@@ -8,4 +8,7 @@
   margin: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   background-color: var(--bg-lighter);
+  max-height: calc(1.75rem + 80px);
+  max-width: 80%;
+  overflow: hidden;
 }

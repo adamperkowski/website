@@ -132,7 +132,7 @@ async fn handle_sponsorship(payload: &str) -> Result<String, (StatusCode, String
     let tier = if payload.sponsorship.tier.is_one_time {
         "one-time donation"
     } else {
-        "sponsorship subscription"
+        "monthly sponsorship"
     };
 
     println!(
@@ -141,7 +141,7 @@ async fn handle_sponsorship(payload: &str) -> Result<String, (StatusCode, String
     );
 
     Ok(format!(
-        "Thanks for the <a href='https://github.com/sponsors/adamperkowski' target='_blank'>{1}</a>, <a href='https://github.com/{0}' target='_blank'>{0}</a>!",
+        "Thanks for supporting me with a <a href='https://github.com/sponsors/adamperkowski' target='_blank'>{1}</a>, <a href='https://github.com/{0}' target='_blank'>{0}</a>!",
         payload.sponsorship.sponsor.login, tier
     ))
 }
