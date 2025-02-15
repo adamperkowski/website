@@ -66,6 +66,7 @@ async fn axum(
         .layer(middleware::from_fn(check_url))
         .route("/projects", get(projects))
         .route("/donate", get(render("donate", &tera_ctx)))
+        .route("/legal", get(render("legal", &tera_ctx)))
         .nest("/api", api_routes)
         .route("/static/{*file}", get(static_files::handler))
         .route(

@@ -23,7 +23,7 @@
     <li>GitHub Followers: {% set github_stats_type = "followers" %}{% include "shortcodes/github.html" %}</li>
     <li>GitHub Repos: {% set github_stats_type = "public_repos" %}{% include "shortcodes/github.html" %}</li>
   </ul>
-  <h2>Contact</h2>
+  <anchor id="contact"><h2>Contact</h2></anchor>
   <ul>
     <li>E-mail: <a href="mailto:adas1per@protonmail.com" target="_blank">adas1per@protonmail.com</a></li>
     <li>GitHub: <a href="https://github.com/adamperkowski" target="_blank">@adamperkowski</a></li>

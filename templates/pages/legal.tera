@@ -1,0 +1,81 @@
+{% extends "layouts/base.tera" %}
+
+{% block title %}{% set title = "LEGAL" %}{% endblock %}
+{% block description %}{% set description = "Privacy policy & other terms" %}{% endblock %}
+
+{% block main %}
+<div class="prose">
+  <h1 class="title">{{ title }}</h1>
+  <p>
+    This website operates under the domain <code>adamperkowski.dev</code> (the "Website") and is maintained by Adam Perkowski ("I", "me", "my").
+    <br>
+    This document contains the legal information for the Website as well as other services provided by me.
+    <br>
+    Last updated: 2025-02-15
+  </p>
+  <div class="prose">
+    <anchor id="privacy-policy"><h2>Privacy Policy</h2></anchor>
+    <p>
+      If you choose to use the Website, you agree to the terms and conditions listed below.
+    </p>
+    <h3>Information Collection and Use</h3>
+    <p>
+      The Website does not collect any personal information or use any trackers or ads. Privacy is important, and I do not engage in any form of tracking or data collection. The Website's source (including this document) is available at <a href="{{ repo }}">{{ repo }}</a>.
+    </p>
+    <h3>Log Data</h3>
+    <p>
+      Whenever you visit the Website, <b>Cloudflare, Inc.</b> ("Cloudflare") may collect the information sent by your browser (the "Log Data") and store it temporarily explicitly for analytic purposes. Please refer to the "Website Visitors" sections in <a href="https://cloudflare.com/privacypolicy">Cloudflare's Privacy Policy</a>.
+      <br>
+      The Log Data may include information such as your computer's Internet Protocol ("IP") address, browser type and version, the time and date of your visit, time spent on specific webpages, and other statistics.
+    </p>
+    <h3>Server-Sent Events</h3>
+    <p>
+      The Website uses Server-Sent Events ("SSE") to provide real-time notifications. The only connection to <code>https://adamperkowski.dev/api/sse</code> is established by the client and maintained until the user leaves the Website or loses internet connection. The connection is not used for tracking or data collection.
+    </p>
+    <h3>Cookies</h3>
+    <p>
+      The Website uses one cookie to store your theme preferences. This cookie is stored in your browser and is not at any point sent to the server.
+    </p>
+    <h3>Third-Party Links</h3>
+    <p>
+      The Website may contain links to third-party websites and services. Please note that I am not responsible for their privacy practices.
+      <br>
+      The Website may send GET requests to <b>GitHub</b>'s REST API and <b>WakaTime</b>'s API to fetch various information whenever you visit certain webpages. Your browser may download JSON data from <code>https://api.github.com</code> and <code>https://wakatime.com</code>.
+    </p>
+    <h3>Changes to This Policy</h3>
+    <p>
+      I may update this Privacy Policy from time to time. Thus, I advise you to review this page periodically for any changes. Every single change is publicly available on <a href="{{ repo }}/commits/axum/templates/pages/legal.tera">GitHub</a>.
+    </p>
+    <h3>A Little Note</h3>
+    <p>
+      If you're concerned about privacy practices of this or any other website, I recommend using an ad-and-tracking-blocking browser extension. <a href="https://github.com/gorhill/uBlock">uBlock Origin</a> is a great choice.
+    </p>
+    <h3>Contact</h3>
+    <p>
+      If you have any questions or suggestions about this policy, do not hesitate to <a href="/#contact">contact me</a>.
+    </p>
+  </div>
+  <div class="prose">
+    <anchor id="sponsorship-terms"><h2>Sponsorship Terms</h2></anchor>
+    <p>
+      1. If you choose to sponsor me through <b>GitHub Sponsors</b>, you agree to the terms and conditions listed below.
+      I reserve the right to reject displaying your name, badge or logo at any time, for any reason.
+      Generally, I do not want to advertise companies that are unsuitable for my projects' target audience.
+      Some examples of unsuitable companies include, but are not limited to: crypto, gambling, adult content, political, religious, etc.
+      <br>
+      2. Name, badge or logo additions/removals may be delayed due to my availability.
+      Timings are not assured, but I will do my best to process them as soon as I can.
+      <br>
+      3. Provided logos are expected to be just logos, not additional advertisements or marketing materials.
+      <br>
+      4. Provided logo files may be modified to fit the project's design.
+      <br>
+      5. Notifications on the Website are not guaranteed.
+    </p>
+  </div>
+</div>
+{% endblock %}
+
+{#
+vim: filetype=html
+#}
