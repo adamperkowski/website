@@ -11,7 +11,7 @@
     <br>
     This document contains the legal information for the Website as well as other services provided by me.
     <br>
-    Last updated: 2025-02-15
+    Last updated: 2025-02-27
   </p>
   <div class="prose">
     <anchor id="privacy-policy"><h2>Privacy Policy</h2></anchor>
@@ -41,6 +41,8 @@
       The Website may contain links to third-party websites and services. Please note that I am not responsible for their privacy practices.
       <br>
       The Website may send GET requests to <b>GitHub</b>'s REST API and <b>WakaTime</b>'s API to fetch various information whenever you visit certain webpages. Your browser may download JSON data from <code>https://api.github.com</code> and <code>https://wakatime.com</code>.
+      <br>
+      In certain parts of the Website, upon error, the Website may download an error image from <code>https://http.cat</code>.
     </p>
     <h3>Changes to This Policy</h3>
     <p>
