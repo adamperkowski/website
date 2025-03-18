@@ -19,25 +19,11 @@ mod templates;
 use templates::TEMPLATES;
 
 /// The main entry point for the server.
-// It is annoted with `#[shuttle_runtime::main]` to make it work with shuttle.dev.
-// To run this server locally, you can either use `just run` (which is a wrapper around `shuttle run`) or add:
-// ```
-// #[tokio::main]
-// async fn main() {
-//     let addr = SocketAddr::from(([127, 0, 0, 1], 8000));
-//     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
-//     // ...
-//     axum::serve(listener, app).await.unwrap();
-// }
-// ```
-#[shuttle_runtime::main]
-async fn axum(
-    #[shuttle_runtime::Secrets] secrets: shuttle_runtime::SecretStore,
-) -> shuttle_axum::ShuttleAxum {
-    std::env::set_var(
-        constants::GITHUB_SECRET_VAR,
-        secrets.get(constants::GITHUB_SECRET_VAR).unwrap(),
-    );
+#[tokio::main]
+async fn main() {
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:8000")
+        .await
+        .unwrap();
 
     let sse_state = sse::init();
 
@@ -99,7 +85,8 @@ async fn axum(
         )
         .fallback((StatusCode::NOT_FOUND, render("error", &tera_ctx)));
 
-    Ok(app.into())
+    println!("server running");
+    axum::serve(listener, app).await.unwrap();
 }
 
 fn render(page: &str, ctx: &Context) -> Html<String> {
