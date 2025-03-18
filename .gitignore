@@ -1,6 +1,7 @@
 target
 static/sitemap.xml
 Secrets.toml
+build
 
 .shuttle*
 Secrets*.toml

@@ -1,18 +1,14 @@
 styles:
-  sass -q --style=compressed --no-source-map styles/main.scss static/styles.css
+  mkdir -p build/static
+  sass -q --style=compressed --no-source-map styles/main.scss build/static/styles.css
 
 sitemap:
   URL='https://adamperkowski.dev' bash scripts/sitemap.sh
 
-webhook:
-  URL='https://adamperkowski.dev' OWNER='adamperkowski' bash scripts/webhook-all.sh
-
-run:
-  @just styles
+build:
+  rm -rf build
+  mkdir -p build/projects build/donate build/legal build/static
   @just sitemap
-  cargo watch -x run
-
-deploy:
-  rm -f static/{styles.css,sitemap.xml}
-  @just styles
-  @just sitemap
+  cargo run
+  cp -R static/* build/static
+  cp static/robots.txt static/humans.txt static/favicon.ico static/sitemap.xml build
