@@ -43,7 +43,7 @@ done
 
 cd - > /dev/null
 
-{ tee ./static/sitemap.xml << EOF
+{ tee /tmp/sitemap.xml << EOF
 $top
 $main
 
