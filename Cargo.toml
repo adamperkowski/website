@@ -9,6 +9,6 @@ authors = ["Adam Perkowski <adas1per@protonmnail.com>"]
 
 [dependencies]
 lazy_static = "1.5.0"
-rust-embed = { version = "8.6.0", features = ["include-exclude", "compression"] }
+rust-embed = { version = "8.7.0", features = ["include-exclude", "compression"] }
 serde = { version = "1.0.219", features = ["derive"] }
 tera = { version = "1.20.0", default-features = false }
