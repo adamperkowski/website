@@ -58,13 +58,13 @@ pub const PROJECTS: &[Project] = &[
         repo: Some("https://github.com/adamperkowski/snapbox"),
     },
     Project {
-        name: "CLIQ",
-        description: "CLI library for Jule",
-        emoji: None,
-        icon: Some("cliq.webp"),
+        name: "kitget",
+        description: "CLI tool for displaying and customizing cat images",
+        emoji: Some("🐱"),
+        icon: None,
         banner: None,
         url: None,
-        repo: Some("https://github.com/adamperkowski/cliq"),
+        repo: Some("https://github.com/adamperkowski/kitget"),
     },
     Project {
         name: "JuleProtonUp",
