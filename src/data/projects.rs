@@ -60,7 +60,7 @@ pub const PROJECTS: &[Project] = &[
     Project {
         name: "kitget",
         description: "CLI tool for displaying and customizing cat images",
-        emoji: Some("🐱"),
+        emoji: Some("😼"),
         icon: None,
         banner: None,
         url: None,
