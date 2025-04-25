@@ -10,9 +10,10 @@ webhook:
 run:
   @just styles
   @just sitemap
-  cargo watch -x run
+  cargo watch -x 'shuttle run'
 
 deploy:
   rm -f static/{styles.css,sitemap.xml}
   @just styles
   @just sitemap
+  shuttle deploy

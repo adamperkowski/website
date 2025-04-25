@@ -19,11 +19,14 @@ mod templates;
 use templates::TEMPLATES;
 
 /// The main entry point for the server.
-#[tokio::main]
-async fn main() {
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:8000")
-        .await
-        .unwrap();
+#[shuttle_runtime::main]
+async fn axum(
+    #[shuttle_runtime::Secrets] secrets: shuttle_runtime::SecretStore,
+) -> shuttle_axum::ShuttleAxum {
+    std::env::set_var(
+        constants::GITHUB_SECRET_VAR,
+        secrets.get(constants::GITHUB_SECRET_VAR).unwrap(),
+    );
 
     let sse_state = sse::init();
 
@@ -85,8 +88,7 @@ async fn main() {
         )
         .fallback((StatusCode::NOT_FOUND, render("error", &tera_ctx)));
 
-    println!("server running");
-    axum::serve(listener, app).await.unwrap();
+    Ok(app.into())
 }
 
 fn render(page: &str, ctx: &Context) -> Html<String> {
