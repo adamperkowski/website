@@ -1,6 +1,10 @@
 #! /bin/bash
 
-. scripts/load-secrets.sh
+. scripts/common.sh
+
+display_warning 'this script may create duplicate webhooks'
+
+load_secrets
 
 repos=$(gh repo list \
   --visibility public \

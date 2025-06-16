@@ -84,7 +84,7 @@ pub async fn handler(
     };
 
     if let Err(e) = sse_state.tx.send(message) {
-        println!("failed to send to SSE: {e}")
+        println!("failed to send SSE: {e}")
     };
 
     (StatusCode::OK, "ok".to_string()).into_response()
