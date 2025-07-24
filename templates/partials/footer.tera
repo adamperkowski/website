@@ -27,9 +27,9 @@
     Copyright (c) 2025 Adam Perkowski
     <br>
     Licensed under
-    <a href="{{ repo }}/blob/axum/LICENSE-MIT" target="_blank">MIT</a>
+    <a href="{{ repo }}/blob/main/LICENSE-MIT" target="_blank">MIT</a>
     &
-    <a href="{{ repo }}/blob/axum/LICENSE-CC-BY-ND-4.0" target="_blank">CC BY-ND 4.0</a>
+    <a href="{{ repo }}/blob/main/LICENSE-CC-BY-ND-4.0" target="_blank">CC BY-ND 4.0</a>
   </span>
 </footer>
 
