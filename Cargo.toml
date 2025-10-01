@@ -9,7 +9,7 @@ authors = ["Adam Perkowski <adas1per@protonmnail.com>"]
 
 [dependencies]
 async-stream = "0.3.6"
-axum = "0.8.3"
+axum = "0.8.6"
 hex = "0.4.3"
 hmac = "0.12.1"
 lazy_static = "1.5.0"
