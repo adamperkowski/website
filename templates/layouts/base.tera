@@ -33,6 +33,8 @@
   </head>
 
   <body>
+    <script src="/static/oneko.js" data-cat="/static/mimi-oneko.gif"></script>
+
     {% include "partials/header.tera" %}
 
     <main class="main-page">

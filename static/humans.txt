@@ -9,6 +9,6 @@ Inspiration: Isabel Roses
 Website: https://isabelroses.com
 
 /* SITE */
-Last update: 2025/10/12
+Last update: 2025/10/13
 Standards: HTML5, CSS3
 Software: Rust, Axum, SCSS, Tera, Neovim
