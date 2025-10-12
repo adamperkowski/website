@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 display_warning() {
   echo "WARNING: $1"

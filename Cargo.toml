@@ -9,17 +9,17 @@ authors = ["Adam Perkowski <adas1per@protonmnail.com>"]
 
 [dependencies]
 async-stream = "0.3.6"
-axum = "0.8.3"
+axum = "0.8.6"
 hex = "0.4.3"
 hmac = "0.12.1"
 lazy_static = "1.5.0"
 mime_guess = "2.0.5"
-rust-embed = { version = "8.7.0", features = ["include-exclude", "compression"] }
-serde = { version = "1.0.219", features = ["derive"] }
-serde_json = "1.0.140"
-sha2 = "0.10.8"
-shuttle-axum = "0.53.0"
-shuttle-runtime = "0.53.0"
+rust-embed = { version = "8.7.2", features = ["include-exclude", "compression"] }
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.145"
+sha2 = "0.10.9"
+shuttle-axum = "0.57.0"
+shuttle-runtime = "0.57.0"
 tera = { version = "1.20.0", default-features = false }
-tokio = { version = "1.44.2", features = ["rt-multi-thread", "macros"] }
+tokio = { version = "1.47.1", features = ["rt-multi-thread", "macros"] }
 tokio-stream = { version = "0.1.17", default-features = false }

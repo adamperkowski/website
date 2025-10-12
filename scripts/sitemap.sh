@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 if [ -z "$URL" ]; then
   echo "no URL provided" > /dev/stderr
