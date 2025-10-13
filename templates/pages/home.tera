@@ -1,0 +1,5 @@
+{% extends "base.tera" %}
+
+{% block main %}
+  <p>hello :3</p>
+{% endblock %}

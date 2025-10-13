@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Adam Perkowski",
+  "url": "https://adamperkowski.com",
+  "email": "mailto:adas1per@protonmail.com",
+  "nationality": "Polish",
+  "knowsLanguage": ["English", "Polish"],
+  "sameAs": [
+    "https://github.com/adamperkowski",
+    "https://bsky.app/profile/adamperkowski.dev"
+  ]
+}

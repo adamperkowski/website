@@ -5,7 +5,7 @@ use crate::Uri;
 pub struct RobotsTXT {
     allowed: Vec<&'static str>,
     disallowed: Vec<&'static str>,
-    sitemap_url: &'static str,
+    sitemap_url: String,
 }
 
 impl fmt::Display for RobotsTXT {
@@ -40,12 +40,15 @@ impl RobotsTXT {
         RobotsTXT {
             allowed,
             disallowed,
-            sitemap_url: "https://example.com/sitemap.xml",
+            sitemap_url: format!("{}/sitemap.xml", crate::constants::HOST),
         }
     }
 }
 
+#[cfg(test)]
 mod t {
+    use super::*;
+
     #[test]
     fn robots_txt_display() {
         let uris = &[
@@ -54,7 +57,10 @@ mod t {
         ];
 
         let robots = RobotsTXT::from_uris(uris);
-        let expected = "User-agent: *\n\nDisallow: /private\nAllow: /\n\nSitemap: https://example.com/sitemap.xml\n";
+        let expected = format!(
+            "User-agent: *\n\nDisallow: /private\nAllow: /\n\nSitemap: {}/sitemap.xml\n",
+            crate::constants::HOST
+        );
 
         assert_eq!(robots.to_string(), expected);
     }

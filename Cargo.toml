@@ -9,5 +9,8 @@ authors = ["Adam Perkowski <adas1per@protonmnail.com>"]
 
 [dependencies]
 axum = { version = "0.8.6", default-features = false }
+lazy_static = "1.5.0"
+rust-embed = "8.7.2"
 shuttle-axum = "0.57.0"
 shuttle-runtime = "0.57.0"
+tera = { version = "1.20.0", default-features = false }
