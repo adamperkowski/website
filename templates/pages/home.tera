@@ -4,18 +4,14 @@
 <div class="home prose">
   <h1 class="title">HELLO WORLD</h1>
   <p>
-    Hey. My name is
-    <span class="text-special">Adam</span>
-    (aka xx0a_q, xeqo).
-    I do computer stuff.
+    hey so i don't like this website anymore it's super cringe i'm redoing it in the <a href="{{ repo }}" target="_blank">allnew branch</a> :3
   </p>
   <p>
-    I write code, break working code, fix broken code, and mostly just code.
-    I also like to play games and listen to
-    <code class="language-regex">/.*(metal|core)/</code>
-    music. I have a severe addiction to Linux, CLIs, TUIs, Rust,
-    <a href="https://jule.dev">Jule</a>,
-    and Vim.
+    yup there was cringe text here before yup ignore
+  </p>
+  <p>
+    mhm yeah mhm no nothing to see here blah blah blah music blah blah linux blah blah blah vim blah<br>
+    blah blah blah programming yup
   </p>
   <h2>Stats</h2>
   <ul>
@@ -27,7 +23,6 @@
   <ul>
     <li>E-mail: <a href="mailto:adas1per@protonmail.com" target="_blank">adas1per@protonmail.com</a></li>
     <li>GitHub: <a href="https://github.com/adamperkowski" target="_blank">@adamperkowski</a></li>
-    <li>Matrix: <a href="https://matrix.to/#/@xx0a_q:matrix.org" target="_blank">@xx0a_q:matrix.org</a></li>
     <li>Bluesky: <a href="https://bsky.app/profile/adamperkowski.dev" target="_blank">@adamperkowski.dev</a></li>
     <li>Discord: <a href="https://discord.com/users/1101820235566305290" target="_blank">@x.eqo</a></li>
   </ul>
