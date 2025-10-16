@@ -87,6 +87,13 @@ async fn axum(
             )),
         )
         .route(
+            "/img/mimi-banner.gif",
+            get((
+                [(header::CONTENT_TYPE, "image/gif")],
+                include_bytes!("../static/mimi-banner.gif"),
+            )),
+        )
+        .route(
             "/sitemap.xml",
             get((
                 [(header::CONTENT_TYPE, "application/xml")],
