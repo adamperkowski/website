@@ -4,8 +4,10 @@ use axum::{
     routing::get,
     Router,
 };
+use tower_http::services::ServeDir;
 
 mod constants;
+mod data;
 mod metadata;
 mod templates;
 
@@ -31,6 +33,13 @@ fn build_routes() -> Router {
 
     let mut router = Router::new()
         .route(
+            "/donate",
+            get((
+                StatusCode::PERMANENT_REDIRECT,
+                [(header::LOCATION, format!("{}/#donate", constants::HOST))],
+            )),
+        )
+        .route(
             "/sitemap.xml",
             get(([(header::CONTENT_TYPE, "application/xml")], sitemap)),
         )
@@ -39,10 +48,12 @@ fn build_routes() -> Router {
             get(([(header::CONTENT_TYPE, "text/plain")], robots)),
         )
         .route("/healthz", get("hello :3"))
+        .nest_service("/img", ServeDir::new("img"))
         .fallback(fallback_handler);
 
     let mut ctx = Context::new();
     ctx.insert("host", constants::HOST);
+    ctx.insert("badges", &data::BADGES);
 
     for uri in uris {
         ctx.insert(

@@ -2,4 +2,8 @@
 
 {% block main %}
   <p>hello :3</p>
+
+  {% for badge in badges %}
+    {% include "partials/badge.tera" %}
+  {% endfor %}
 {% endblock %}

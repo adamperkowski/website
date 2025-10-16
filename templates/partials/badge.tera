@@ -1,0 +1,14 @@
+{% if badge.href %}
+<a class="target-blank" href="{{ badge.href }}">
+{% endif %}
+
+<img
+  width="88"
+  height="31"
+  src="{{ badge.src }}"
+  alt="{{ badge.alt }}"
+/>
+
+{% if badge.href %}
+</a>
+{% endif %}
