@@ -1,5 +1,6 @@
 [package]
 name = "website"
+description = "my personal website :3"
 version = "0.1.0"
 edition = "2024"
 license = "LicenseRef-MIT-WITH-Happy-Bunny OR MIT"
