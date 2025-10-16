@@ -10,6 +10,13 @@
     </div>
 
     <div class="right">
+      <img
+        class="header-badge"
+        width="88"
+        height="31"
+        src="/img/badges/mimi-the-car.gif"
+        alt="mimi the car (adam's site)"
+      </img>
       <form name="themes" id="form-themes" class="theme-switcher">
         <select name="themes" id="themes" aria-label="Mr. Theme Switcher">
           <option value="cat-mocha">Catppuccin Mocha</option>

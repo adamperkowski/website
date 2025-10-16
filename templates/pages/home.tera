@@ -2,17 +2,20 @@
 
 {% block main %}
 <div class="home prose">
+  <script src="/static/oneko.js" data-cat="/static/mimi-oneko.gif"></script>
+
   <h1 class="title">HELLO WORLD</h1>
   <p>
-    hey so i don't like this website anymore it's super cringe i'm redoing it in the <a href="{{ repo }}" target="_blank">allnew branch</a> :3
-  </p>
-  <p>
-    yup there was cringe text here before yup ignore
-  </p>
-  <p>
-    mhm yeah mhm no nothing to see here blah blah blah music blah blah linux blah blah blah vim blah<br>
-    blah blah blah programming yup
-  </p>
+    hey so i don't like this website anymore it's super cringe i'm redoing it in the <a href="{{ repo }}" target="_blank">allnew branch</a> :3<br>
+    also if u want to use my badge
+    <br>
+    <pre><code>&lt;a href="https://adamperkowski.dev" target="_blank"&gt;
+  &lt;img
+    width="88"
+    height="31"
+    src="https://adamperkowski.dev/img/badges/mimi-the-car.gif"
+    alt="mimi the car (adam's site)"&gt;
+&lt;/a&gt;</code></pre>
   <h2>Stats</h2>
   <ul>
     <li>WakaTime: {% include "shortcodes/wakatime.html" %}</li>
@@ -27,14 +30,12 @@
     <li>Discord: <a href="https://discord.com/users/1101820235566305290" target="_blank">@x.eqo</a></li>
   </ul>
   <p>
-    <a href="https://raw.githubusercontent.com/adamperkowski/adamperkowski/main/ecc_pub_key" target="_blank">ECC Public Key</a>
-    <br>
+    <a href="https://raw.githubusercontent.com/adamperkowski/adamperkowski/main/ecc_pub_key" target="_blank">ECC Public Key</a>:
     <code>00F6 1623 FB56 BC5B B709 4E63 4CE6 C117 2DF6 BE79</code>
-  </p>
-  <p>
-    <a href="https://raw.githubusercontent.com/adamperkowski/adamperkowski/main/rsa_pub_key" target="_blank">RSA Public Key</a> (git; sign-only)
     <br>
+    <a href="https://raw.githubusercontent.com/adamperkowski/adamperkowski/main/rsa_pub_key" target="_blank">RSA Public Key</a>:
     <code>5A53 0832 DA91 20B0 CA57 DDB6 7CBD B58E CF1D 3478</code>
+    (git; sign-only)
   </p>
 </div>
 {% endblock %}

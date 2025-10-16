@@ -29,8 +29,17 @@
   gap: 0.5rem;
 
   .right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
     margin-left: auto;
   }
+}
+
+.header-badge {
+  width: 88px !important;
+  height: 31px !important;
 }
 
 #mobile-burger {
