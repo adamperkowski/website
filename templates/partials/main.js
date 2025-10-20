@@ -11,7 +11,15 @@ function setTheme(theme) {
 }
 
 function getTheme() {
-  return localStorage.getItem('theme') || 'catppuccin';
+  const theme = localStorage.getItem('theme');
+  if (!theme) { return 'catppuccin'};
+
+  const selectTheme = document.getElementById('select-theme');
+  if (Array.from(selectTheme.options).some(option => option.innerText === theme)) {
+    return theme;
+  }
+
+  return 'catppuccin';
 }
 
 function setTargetBlank() {
