@@ -49,6 +49,7 @@ fn build_routes() -> Router {
     let robots = RobotsTXT::from_uris(uris).to_string();
 
     let redirect_router: Router = Router::new()
+        .route("/legal", get(|| redirect_old("/legal")))
         .route("/favicon.ico", get(|| redirect("/img/favicon.ico")))
         .route("/styles.css", get(|| redirect("/static/styles.css")));
 
@@ -92,6 +93,18 @@ async fn redirect(location: &str) -> Response {
         .into_response()
 }
 
+async fn redirect_old(location: &str) -> Response {
+    (
+        StatusCode::TEMPORARY_REDIRECT,
+        [(
+            header::LOCATION,
+            format!("{}{}", constants::OLD_HOST, location),
+        )],
+        "redirecting...",
+    )
+        .into_response()
+}
+
 fn render(page_name: &str, ctx: &Context) -> Html<String> {
     let path = format!("pages/{page_name}.tera");
 
@@ -114,5 +127,11 @@ async fn fallback_handler(uri: http::Uri) -> Response {
         return redirect(&new_loc).await;
     }
 
-    (StatusCode::NOT_FOUND, "not nound :c").into_response()
+    let text = format!(
+        "not found :c\nsince this website is still under development, check the old version: {}{}",
+        constants::OLD_HOST,
+        path
+    );
+
+    (StatusCode::NOT_FOUND, text).into_response()
 }
