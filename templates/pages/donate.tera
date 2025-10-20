@@ -1,0 +1,23 @@
+{% extends "base.tera" %}
+
+{% block title %}{% set title = "donate" %}{% endblock %}
+{% block description %}{% set description = "giv me moneyz pls :3" %}{% endblock %}
+
+{% block main %}
+  <p>
+    giv me moneyz pls?
+    <span class="inline-img"><img src="/img/gifs/smilies/begging.gif" alt="shocked smiley"></span>
+    <br>
+    just kidding lol i'm not telling you what to do
+    <br>
+    but still, i'm bit broke and if you want to support my work, feel free to donate through github sponsors :3
+    <br>
+    you'll get some cool perks like a special badge on both my and your profile and a notification on this site!!
+    <br>
+    so yeah, here's the link: <a class="target-blank" href="https://github.com/sponsors/adamperkowski">github sponsors</a>
+  </p>
+
+  {% for i in range(end=3) %}
+    <img src="/img/gifs/spinning-dollar-bill.gif" width="100px" height="40px" alt="spinning dollar bill">
+  {% endfor %}
+{% endblock %}

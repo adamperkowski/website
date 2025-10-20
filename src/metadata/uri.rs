@@ -1,3 +1,6 @@
+use serde::Serialize;
+
+#[derive(Serialize)]
 pub struct Uri {
     pub uri: &'static str,
     pub template: &'static str,
@@ -26,7 +29,8 @@ impl Uri {
     }
 }
 
-#[derive(Clone)]
+#[derive(Clone, Serialize)]
+#[allow(dead_code)]
 pub enum ChangeFreq {
     Always,
     Hourly,

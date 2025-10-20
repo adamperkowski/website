@@ -1,11 +1,11 @@
 {% block title %}{% endblock %}
 {% if title %}
-  {% set title = title ~ " - adam perkowski" %}
+  {% set title = title ~ " - adam" %}
 {% else %}
-  {% set title = "adam perkowski" %}
+  {% set title = "adam" %}
 {% endif %}
-{% block description %}{% set description = "welcome to my website!! i'm adam, i do programming stuff and also some other stuffs too :3" %}{% endblock %}
-{% block keywords %}{% set keywords = "adam, perkowski, adam perkowski, developer, programmer, software engineer, blog" %}{% endblock %}
+{% block description %}{% set description = "welcome to my website :3 i'm an indie software developer from Poland doing some cool stuffs on the internet :>" %}{% endblock %}
+{% block noindex %}{% endblock %}
 
 <!doctype html>
 <html lang="en">
@@ -24,14 +24,12 @@
     <title>{{ title }}</title>
     <meta name="title" content="{{ title }}">
     <meta name="description" content="{{ description }}">
-    <meta name="keywords" content="{{ keywords }}">
     <meta name="author" content="adam perkowski">
     {# <meta name="theme-color" content="#b4befe"> #}
 
     <link rel="canonical" href="{{ canonical }}">
     <link rel="stylesheet" href="/static/styles.css">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="64x64">
-    <link rel="icon" type="image/png" href="/img/favicon.png" sizes="96x96">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" sizes="32x32 64x64 96x96 128x128 256x256">
 
     <meta property="og:title" content="{{ title }}">
     <meta property="og:description" content="{{ description }}">
@@ -39,19 +37,31 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ canonical }}">
     <meta property="og:site_name" content="adam perkowski">
-    <meta property="og:image" content="{{ host }}/img/og-image.webp">
-    <meta property="og:image:type" content="image/webp">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="adam perkowski"> {# TODO #}
+    <meta property="og:image" content="{{ host }}/img/mimi-banner.gif">
+    <meta property="og:image:type" content="image/gif">
+    <meta property="og:image:width" content="496">
+    <meta property="og:image:height" content="32">
+    <meta property="og:image:alt" content="mimi the car running around">
 
     <script>{% include "partials/main.js" %}</script>
     <script type="application/ld+json">{% include "partials/schema.json" %}</script>
   </head>
 
   <body>
-    <main>
-      {% block main %}{% endblock %}
-    </main>
+    <script src="/static/oneko.js" data-cat="img/mimi-oneko.gif" async></script>
+
+    <div id="sidebar">
+      {% include "partials/sidebar.tera" %}
+    </div>
+
+    <div id="content">
+      <div id="main">
+        {% block main %}{% endblock %}
+      </div>
+
+      <div id="footer">
+        <p>Copyright (c) 2025 Adam Perkowski</p>
+      </div>
+    </div>
   </body>
 </html>

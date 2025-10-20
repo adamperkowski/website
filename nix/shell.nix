@@ -7,8 +7,6 @@ let
     with pkgs;
     [
       jq
-      just
-      dart-sass
       clippy
       cargo-watch
       cargo-shuttle

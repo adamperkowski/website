@@ -16,12 +16,11 @@
       forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f nixpkgs.legacyPackages.${system});
     in
     {
-      packages = forAllSystems (pkgs: rec {
-        default = website;
-        website = pkgs.callPackage ./nix/default.nix { };
+      packages = forAllSystems (pkgs: {
+        default = pkgs.callPackage ./nix/default.nix { };
       });
 
-      devShells = forAllSystems (pkgs: rec {
+      devShells = forAllSystems (pkgs: {
         default = pkgs.callPackage ./nix/shell.nix { inherit pkgs; };
       });
 

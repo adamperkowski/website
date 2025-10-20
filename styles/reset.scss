@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+input, button, textarea, select {
+  border: unset;
+  background: unset;
+  padding: unset;
+  font: inherit;
+}
+
+img {
+  image-rendering: pixelated;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+select:hover {
+  cursor: pointer
+}

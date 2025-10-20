@@ -1,0 +1,22 @@
+{% extends "base.tera" %}
+
+{% block title %}{% set title = "page under construction" %}{% endblock %}
+{% block description %}{% set description = "come back later!!" %}{% endblock %}
+{% block noindex %}{% set noindex = true %}{% endblock %}
+
+{% block main %}
+  <!-- hell yeah it's 1.5rem because of line-height -->
+  <p style="height: calc(92px - 1.5rem);">
+    page under construction :c
+    <br>
+    come back later!!
+  </p>
+
+  <img
+    src="/img/gifs/under-construction.gif"
+    alt="Under Construction"
+    class="main-absolute"
+    width="88px"
+    height="92px"
+    style="right: 0; bottom: 0;">
+{% endblock %}

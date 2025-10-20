@@ -1,6 +1,8 @@
 {
   lib,
   rustPlatform,
+  just,
+  dart-sass,
 }:
 
 let
@@ -13,6 +15,16 @@ rustPlatform.buildRustPackage {
   src = ../.;
 
   cargoLock.lockFile = ../Cargo.lock;
+
+  nativeBuildInputs = [ just dart-sass ];
+
+  dontUseJustInstall = true;
+  dontUseJustBuild = true;
+  dontUseJustCheck = true;
+
+  preBuild = ''
+    just build-styles
+  '';
 
   doCheck = false;
 

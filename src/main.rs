@@ -20,25 +20,39 @@ async fn axum() -> shuttle_axum::ShuttleAxum {
 }
 
 fn build_routes() -> Router {
-    let uris = &[Uri::new(
-        "/",
-        "home",
-        true,
-        Some(ChangeFreq::Monthly),
-        Some(1.0),
-    )];
+    let uris = &[
+        Uri::new("/", "home", true, Some(ChangeFreq::Monthly), Some(1.0)),
+        Uri::new(
+            "/donate",
+            "donate",
+            true,
+            Some(ChangeFreq::Yearly),
+            Some(0.8),
+        ),
+        Uri::new(
+            "/contact",
+            "contact",
+            true,
+            Some(ChangeFreq::Yearly),
+            Some(0.8),
+        ),
+        Uri::new(
+            "/projects",
+            "construction",
+            true,
+            Some(ChangeFreq::Monthly),
+            Some(0.8),
+        ),
+    ];
 
     let sitemap = Sitemap::from_uris(uris).to_string();
     let robots = RobotsTXT::from_uris(uris).to_string();
 
+    let redirect_router: Router = Router::new()
+        .route("/favicon.ico", get(|| redirect("/img/favicon.ico")))
+        .route("/styles.css", get(|| redirect("/static/styles.css")));
+
     let mut router = Router::new()
-        .route(
-            "/donate",
-            get((
-                StatusCode::PERMANENT_REDIRECT,
-                [(header::LOCATION, format!("{}/#donate", constants::HOST))],
-            )),
-        )
         .route(
             "/sitemap.xml",
             get(([(header::CONTENT_TYPE, "application/xml")], sitemap)),
@@ -47,13 +61,16 @@ fn build_routes() -> Router {
             "/robots.txt",
             get(([(header::CONTENT_TYPE, "text/plain")], robots)),
         )
-        .route("/healthz", get("hello :3"))
+        .merge(redirect_router)
         .nest_service("/img", ServeDir::new("img"))
+        .nest_service("/static", ServeDir::new("static"))
+        .route("/healthz", get("hello :3"))
         .fallback(fallback_handler);
 
     let mut ctx = Context::new();
     ctx.insert("host", constants::HOST);
     ctx.insert("badges", &data::BADGES);
+    ctx.insert("uris", uris);
 
     for uri in uris {
         ctx.insert(
@@ -64,6 +81,15 @@ fn build_routes() -> Router {
     }
 
     router
+}
+
+async fn redirect(location: &str) -> Response {
+    (
+        StatusCode::PERMANENT_REDIRECT,
+        [(header::LOCATION, location)],
+        "redirecting...",
+    )
+        .into_response()
 }
 
 fn render(page_name: &str, ctx: &Context) -> Html<String> {
@@ -85,12 +111,7 @@ async fn fallback_handler(uri: http::Uri) -> Response {
         let new_path = path.trim_end_matches('/');
         let new_loc = format!("{}{}", constants::HOST, new_path);
 
-        return (
-            StatusCode::PERMANENT_REDIRECT,
-            [(header::LOCATION, new_loc)],
-            "redirecting...",
-        )
-            .into_response();
+        return redirect(&new_loc).await;
     }
 
     (StatusCode::NOT_FOUND, "not nound :c").into_response()

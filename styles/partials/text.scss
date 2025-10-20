@@ -1,0 +1,74 @@
+p {
+  line-height: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @extend p;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 1.2rem;
+}
+
+h2, h3 {
+  font-size: 1.1rem;
+}
+
+h4, h5, h6 {
+  font-size: 1rem;
+}
+
+strong {
+  font-weight: bold;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline var(--bg-alt) 2px;
+}
+
+a.active {
+  background-color: var(--bg-alt);
+}
+
+.inline-img {
+  display: inline-block;
+  position: relative;
+
+  vertical-align: middle;
+  overflow: visible;
+
+  width: 1.46rem;
+  height: 1.46rem;
+}
+
+.inline-img img {
+  position: absolute;
+  display: block;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: auto;
+  height: 2rem;
+}
+
+pre:has(code) {
+  background-color: var(--bg-alt);
+  border: solid 2px color-mix(in srgb, var(--bg-alt), white 15%);
+  text-wrap: wrap;
+}
+
+p > code {
+  background-color: var(--bg-alt);
+  border: solid 2px color-mix(in srgb, var(--bg-alt), white 15%);
+}

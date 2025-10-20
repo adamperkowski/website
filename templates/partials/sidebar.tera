@@ -1,0 +1,26 @@
+<nav>
+  <div class="sidebar-top">
+    <a class="sidebar-link" href="/">adam perkowski</a>
+
+    {% for uri in uris %}
+      {% if uri.uri == "/" %}
+        {% continue %}
+      {% endif %}
+
+      {# TODO: "│  ├─ " #}
+
+      {% if loop.last %}
+        <a class="sidebar-link" href="{{ uri.uri }}">{{ uri.uri | replace(from="/", to="└─ ") }}</a>
+      {% else %}
+        <a class="sidebar-link" href="{{ uri.uri }}">{{ uri.uri | replace(from="/", to="├─ ") }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="sidebar-bottom">
+    <select id="select-theme" aria-label="select theme">
+      <option>catppuccin</option>
+      <option>mimi</option>
+    </select>
+  </div>
+</nav>

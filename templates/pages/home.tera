@@ -1,7 +1,33 @@
 {% extends "base.tera" %}
 
 {% block main %}
-  <p>hello :3</p>
+  <p>
+    <img src="/img/gifs/smilies/welcome.gif" alt="smiley with a welcome sign" width="60px" height="45px" class="main-absolute" style="right: 0; top: 0;">
+    hello!! welcome to my website :3
+  </p>
+  <p>
+    i'm an indie software developer from Poland doing some cool stuffs on the internet :>
+    <br>
+    just look around this very website and see how cool it is :D
+    <br>
+    you know what's even cooler though?
+    <br>
+    that its source code is available publically in a <a class="target-blank" href="https://github.com/adamperkowski/website">github repo</a>
+    <span class="inline-img"><img src="/img/gifs/smilies/shocked.gif" alt="shocked smiley"></span>
+  </p>
+  <p>
+    anyway, i love listening to music. mostly (post)grunge and a lot of different rock/metal flavors
+    <span class="inline-img"><img src="/img/gifs/smilies/rock-on.gif" alt="rock on smiley"></span>
+    <br>
+    i play video games from time to time. my favs are OneShot, Dead Cells, The Witcher 3 and Elden Ring!
+    <br>
+    i also play some guitar and draw, pretty bad at both though :c
+  </p>
+  <p>
+    yeah so have fun going through my site (even though it's still kinda WIP)
+    <br>
+    and umm have a great day? or something
+  </p>
 
   {% for badge in badges %}
     {% include "partials/badge.tera" %}

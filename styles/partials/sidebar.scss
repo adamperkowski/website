@@ -1,0 +1,48 @@
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.sidebar-top a {
+  line-height: 1.5;
+}
+
+.sidebar-bottom {
+  padding: 1rem;
+}
+
+@media (max-width: 854px) {
+  .sidebar-top {
+    padding-bottom: 0.5rem;
+  }
+
+  .sidebar-bottom {
+    padding-top: 0.5rem;
+  }
+}
+
+#select-theme {
+  width: 100%;
+
+  color: var(--fg);
+  background-color: var(--bg);
+
+  border-top: var(--border-dashed);
+  padding-top: 0.5rem;
+
+  outline: none;
+  appearance:none;
+}
+
+#select-theme option {
+  color: var(--fg);
+  background-color: var(--bg);
+}

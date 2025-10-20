@@ -1,0 +1,10 @@
+[deploy]
+include = [
+  "static/styles.css",
+]
+
+[build]
+assets = [
+  "static/*",
+  "img/*",
+]

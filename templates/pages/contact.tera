@@ -1,0 +1,34 @@
+{% extends "base.tera" %}
+
+{% block title %}{% set title = "contact" %}{% endblock %}
+{% block description %}{% set description = "get in touch with me :3" %}{% endblock %}
+
+{% block main %}
+  <p>contact stuffs</p>
+
+  <p>
+    email: <a class="target-blank" href="mailto:adas1per@protonmail.com">adas1per@protonmail.com</a>
+    <br>
+    github: <a class="target-blank" href="https://github.com/adamperkowski">github.com/adamperkowski</a>
+    <br>
+    bluesky: <a class="target-blank" href="https://bsky.app/profile/adamperkowski.dev">@adamperkowski.dev</a>
+    <br>
+    discord: <a class="target-blank" href="https://discord.com/users/1101820235566305290">@x.eqo</a>
+  </p>
+
+  <p>
+    <a class="target-blank" href="https://raw.githubusercontent.com/adamperkowski/adamperkowski/main/ecc_pub_key">ECC Public Key</a>
+    <br>
+    <code>00F6 1623 FB56 BC5B B709 4E63 4CE6 C117 2DF6 BE79</code>
+  </p>
+
+  <p>
+    <a class="target-blank" href="https://raw.githubusercontent.com/adamperkowski/adamperkowski/main/rsa_pub_key">RSA Public Key</a> (git; sign-only)
+    <br>
+    <code>5A53 0832 DA91 20B0 CA57 DDB6 7CBD B58E CF1D 3478</code>
+  </p>
+
+  <img src="/img/gifs/cellphone-jumping.gif" height="70px" width="70px" alt="cellphone jumping">
+  <img src="/img/gifs/phones-ringing.gif" height="70px" width="70px" alt="phone ringing">
+  <img src="/img/gifs/cellphone.gif" height="70px" width="70px" alt="cellphone">
+{% endblock %}
