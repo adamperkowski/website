@@ -8,6 +8,7 @@ let
     [
       jq
       clippy
+      cargo-edit
       cargo-watch
       cargo-shuttle
       rust-analyzer
