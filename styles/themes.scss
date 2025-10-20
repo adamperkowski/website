@@ -24,6 +24,10 @@
   }
 }
 
+* {
+  will-change: color, background-color, border-color;
+}
+
 :root {
   --border-dashed: 4px dashed var(--bg-alt);
 }

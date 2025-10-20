@@ -1,0 +1,32 @@
+@view-transition {
+  navigation: auto;
+}
+
+*:not(#oneko) {
+  transition: color 0.3s ease-in-out,
+    background 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
+}
+
+#main {
+  animation: grow-in 0.5s ease-in-out;
+}
+
+@keyframes grow-in {
+  from {
+    transform: scale(0.95);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition: none;
+  }
+}

@@ -1,3 +1,5 @@
+setTheme(getTheme());
+
 function setTheme(theme) {
   localStorage.setItem('theme', theme);
   document.documentElement.className = 'theme-' + theme;
@@ -7,15 +9,22 @@ function setTheme(theme) {
     selectTheme.value = theme;
   }
 
-  document.getElementById('content').className = 'bg-' + theme;
+  const content = document.getElementById('content');
+  if (content) {
+    content.className = 'bg-' + theme;
+  };
 }
 
 function getTheme() {
   const theme = localStorage.getItem('theme');
-  if (!theme) { return 'catppuccin'};
+  if (!theme) { return 'catppuccin' };
 
   const selectTheme = document.getElementById('select-theme');
-  if (Array.from(selectTheme.options).some(option => option.innerText === theme)) {
+  if (selectTheme && selectTheme.options) {
+    if (Array.from(selectTheme.options).some(option => option.innerText === theme)) {
+      return theme;
+    };
+  } else {
     return theme;
   }
 
