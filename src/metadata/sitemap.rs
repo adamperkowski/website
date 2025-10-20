@@ -1,6 +1,6 @@
 use std::fmt;
 
-use crate::ChangeFreq;
+use crate::{constants, ChangeFreq};
 
 const HEADER: &str = r#"<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -37,7 +37,12 @@ impl fmt::Display for Sitemap {
 impl fmt::Display for Url {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "  <url>")?;
-        writeln!(f, "    <loc>{}</loc>", self.loc)?;
+        writeln!(
+            f,
+            "    <loc>{}{}</loc>",
+            constants::HOST,
+            self.loc.trim_end_matches('/')
+        )?;
 
         if let Some(changefreq) = &self.changefreq {
             writeln!(f, "    <changefreq>{}</changefreq>", changefreq)?;
@@ -63,8 +68,10 @@ impl fmt::Display for Alternate {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(
             f,
-            r#"    <xhtml:link rel="alternate" hreflang="{}" href="{}"/>"#,
-            self.hreflang, self.href
+            r#"    <xhtml:link rel="alternate" hreflang="{}" href="{}{}"/>"#,
+            self.hreflang,
+            constants::HOST,
+            self.href.trim_end_matches('/')
         )
     }
 }
@@ -110,23 +117,23 @@ mod t {
     fn sitemap_display() {
         let sitemap = Sitemap(vec![
             Url {
-                loc: "https://example.com/",
+                loc: "/",
                 changefreq: Some(ChangeFreq::Daily),
                 priority: Some(1.0),
                 lastmod: Some("2000-01-01"),
                 alternates: Some(vec![
                     Alternate {
                         hreflang: "en",
-                        href: "https://example.com/en/",
+                        href: "/en",
                     },
                     Alternate {
                         hreflang: "pl",
-                        href: "https://example.com/pl/",
+                        href: "/pl",
                     },
                 ]),
             },
             Url {
-                loc: "https://example.com/about",
+                loc: "/about",
                 changefreq: None,
                 priority: Some(0.8),
                 lastmod: None,
@@ -134,23 +141,26 @@ mod t {
             },
         ]);
 
-        let expected = r#"<?xml version="1.0" encoding="UTF-8"?>
+        let expected = format!(
+            r#"<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://example.com/</loc>
+    <loc>{0}</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <lastmod>2000-01-01</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://example.com/en/"/>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://example.com/pl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{0}/en"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="{0}/pl"/>
   </url>
   <url>
-    <loc>https://example.com/about</loc>
+    <loc>{0}/about</loc>
     <priority>0.8</priority>
   </url>
 </urlset>
-"#;
+"#,
+            constants::HOST
+        );
 
         assert_eq!(sitemap.to_string(), expected);
     }
