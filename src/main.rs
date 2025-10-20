@@ -52,7 +52,6 @@ async fn axum(
 
     let app = Router::new()
         .route("/", get(render("home", &tera_ctx)))
-        .layer(middleware::from_fn(check_url))
         .route("/projects", get(projects))
         .route("/donate", get(render("donate", &tera_ctx)))
         .route("/legal", get(render("legal", &tera_ctx)))
@@ -109,41 +108,4 @@ fn render(page: &str, ctx: &Context) -> Html<String> {
     let path = format!("pages/{page}.tera");
 
     Html(TEMPLATES.render(&path, ctx).unwrap())
-}
-
-/// Middleware to check the URL client is accessing and redirect if necessary.
-/// This ensures the only way to access the site is through the official domain.
-async fn check_url(
-    req: Request<Body>,
-    next: middleware::Next,
-) -> Result<Response<Body>, StatusCode> {
-    let host = req
-        .headers()
-        .get("host")
-        .and_then(|h| h.to_str().ok())
-        .unwrap_or_default();
-
-    #[cfg(debug_assertions)]
-    let expected_host = "127.0.0.1:8000";
-    #[cfg(not(debug_assertions))]
-    let expected_host = constants::HOST;
-
-    if host == expected_host {
-        return Ok(next.run(req).await);
-    }
-
-    let p_and_q = req
-        .uri()
-        .path_and_query()
-        .map(|pq| pq.as_str())
-        .unwrap_or("/");
-    let uri = Uri::builder()
-        .scheme("https")
-        .authority(expected_host)
-        .path_and_query(p_and_q)
-        .build()
-        .expect("failed to build URI")
-        .to_string();
-
-    Ok(Redirect::permanent(&uri).into_response())
 }
