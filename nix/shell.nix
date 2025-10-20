@@ -12,6 +12,7 @@ let
       cargo-shuttle
       rust-analyzer
       rustfmt
+      libwebp
     ]
     ++ (mainPkg.nativeBuildInputs or [ ])
     ++ (mainPkg.buildInputs or [ ]);

@@ -1,5 +1,3 @@
-setTheme(getTheme());
-
 function setTheme(theme) {
   localStorage.setItem('theme', theme);
   document.documentElement.className = 'theme-' + theme;
@@ -8,6 +6,8 @@ function setTheme(theme) {
   if (selectTheme) {
     selectTheme.value = theme;
   }
+
+  document.getElementById('content').className = 'bg-' + theme;
 }
 
 function getTheme() {

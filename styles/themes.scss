@@ -1,6 +1,7 @@
 .theme-mimi {
   --fg: #eacfb7;
   --bg: #1c1207;
+  --fg-alt: #8c6f53;
   --bg-alt: #33200d;
   --accent: #af4c58;
 }
@@ -8,8 +9,19 @@
 .theme-catppuccin {
   --fg: #cdd6f4;
   --bg: #181825;
+  --fg-alt: #6c7086;
   --bg-alt: #313244;
   --accent: #b4befe;
+}
+
+@media (min-width: 855px) {
+  .bg-mimi {
+    background-image: url('/img/backgrounds/mimi.webp');
+  }
+
+  .bg-catppuccin {
+    background-image: url('/img/backgrounds/catppuccin.webp');
+  }
 }
 
 :root {
