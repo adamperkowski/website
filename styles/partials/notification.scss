@@ -1,0 +1,25 @@
+.notification {
+  display: flex;
+  justify-content: center;
+
+  z-index: 0;
+}
+
+.notification-content {
+  position: absolute;
+
+  background-color: var(--bg);
+  border: var(--border-dashed);
+
+  max-width: 90%;
+  overflow: hidden;
+
+  padding: 0.5rem 1rem;
+
+  top: 10%;
+  z-index: 1000;
+}
+
+.notification p {
+  margin: 0;
+}

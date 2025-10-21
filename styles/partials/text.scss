@@ -63,13 +63,9 @@ a.active {
   height: 2rem;
 }
 
+p > code,
 pre:has(code) {
   background-color: var(--bg-alt);
   border: solid 2px color-mix(in srgb, var(--bg-alt), white 15%);
   text-wrap: wrap;
-}
-
-p > code {
-  background-color: var(--bg-alt);
-  border: solid 2px color-mix(in srgb, var(--bg-alt), white 15%);
 }

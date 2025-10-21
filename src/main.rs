@@ -4,8 +4,10 @@ use axum::{
     routing::get,
     Router,
 };
+use shuttle_runtime::{SecretStore, Secrets};
 use tower_http::services::ServeDir;
 
+mod api;
 mod constants;
 mod data;
 mod metadata;
@@ -14,8 +16,22 @@ mod templates;
 use metadata::{ChangeFreq, RobotsTXT, Sitemap, Uri};
 use tera::Context;
 
+use crate::api::{github_handler, SseState};
+
 #[shuttle_runtime::main]
-async fn axum() -> shuttle_axum::ShuttleAxum {
+async fn axum(#[Secrets] secrets: SecretStore) -> shuttle_axum::ShuttleAxum {
+    unsafe {
+        std::env::set_var(
+            constants::GITHUB_SECRET_VAR,
+            secrets.get(constants::GITHUB_SECRET_VAR).unwrap(),
+        );
+
+        println!(
+            "Loaded secret: {}",
+            secrets.get(constants::GITHUB_SECRET_VAR).unwrap()
+        );
+    }
+
     Ok(build_routes().into())
 }
 
@@ -48,8 +64,12 @@ fn build_routes() -> Router {
     let sitemap = Sitemap::from_uris(uris).to_string();
     let robots = RobotsTXT::from_uris(uris).to_string();
 
+    let api_router: Router = Router::new()
+        .route("/sse", get(SseState::handler))
+        .route("/github", get(github_handler))
+        .with_state(SseState::init());
+
     let redirect_router: Router = Router::new()
-        .route("/legal", get(|| redirect_old("/legal")))
         .route("/favicon.ico", get(|| redirect("/img/favicon.ico")))
         .route("/styles.css", get(|| redirect("/static/styles.css")));
 
@@ -63,9 +83,10 @@ fn build_routes() -> Router {
             get(([(header::CONTENT_TYPE, "text/plain")], robots)),
         )
         .merge(redirect_router)
+        .nest("/api", api_router)
         .nest_service("/img", ServeDir::new("img"))
         .nest_service("/static", ServeDir::new("static"))
-        .route("/healthz", get("hello :3"))
+        .route("/healthz", get("alive :3"))
         .fallback(fallback_handler);
 
     let mut ctx = Context::new();
@@ -88,18 +109,6 @@ async fn redirect(location: &str) -> Response {
     (
         StatusCode::PERMANENT_REDIRECT,
         [(header::LOCATION, location)],
-        "redirecting...",
-    )
-        .into_response()
-}
-
-async fn redirect_old(location: &str) -> Response {
-    (
-        StatusCode::TEMPORARY_REDIRECT,
-        [(
-            header::LOCATION,
-            format!("{}{}", constants::OLD_HOST, location),
-        )],
         "redirecting...",
     )
         .into_response()

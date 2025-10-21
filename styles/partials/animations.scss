@@ -4,12 +4,43 @@
 
 *:not(#oneko) {
   transition: color 0.3s ease-in-out,
+    opacity 0.3s ease-in-out,
     background 0.3s ease-in-out,
+    background-color 0.3s ease-in-out,
+    background-image 0.3s ease-in-out,
     border-color 0.3s ease-in-out;
+}
+
+.notification-content {
+  animation: show-notification 0.8s ease-out;
+}
+
+.notification-content-remove {
+  animation: unshow-notification 0.8s ease-in;
+}
+
+.notification img {
+  animation: show-notification 0.8s ease-out;
+}
+
+.notification-remove img {
+  animation: unshow-notification 0.8s ease-in;
 }
 
 #main {
   animation: grow-in 0.5s ease-in-out;
+}
+
+@keyframes show-notification {
+  from {
+    transform: scale(2);
+  }
+}
+
+@keyframes unshow-notification {
+  to {
+    transform: scale(0);
+  }
 }
 
 @keyframes grow-in {
