@@ -5,30 +5,23 @@ function setTheme(theme) {
   document.documentElement.className = 'theme-' + theme;
 
   const selectTheme = document.getElementById('select-theme');
-  if (selectTheme) {
-    selectTheme.value = theme;
-  }
+  if (selectTheme) selectTheme.value = theme;
 
   const content = document.getElementById('content');
-  if (content) {
-    content.className = 'bg-' + theme;
-  };
+  if (!content) return;
+
+  content.className = `bg-${theme}`;
 }
 
 function getTheme() {
   const theme = localStorage.getItem('theme');
-  if (!theme) { return 'catppuccin' };
+  if (!theme) return 'catppuccin';
 
   const selectTheme = document.getElementById('select-theme');
-  if (selectTheme && selectTheme.options) {
-    if (Array.from(selectTheme.options).some(option => option.innerText === theme)) {
-      return theme;
-    };
-  } else {
-    return theme;
-  }
+  if (!selectTheme || !selectTheme.options) return theme;
 
-  return 'catppuccin';
+  const found = Array.from(selectTheme.options).some(option => option.text === theme);
+  return found ? theme : 'catppuccin';
 }
 
 function setTargetBlank() {
@@ -38,18 +31,15 @@ function setTargetBlank() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  const selectTheme = document.getElementById('select-theme');
-
   setTheme(getTheme());
 
+  const selectTheme = document.getElementById('select-theme');
   selectTheme.addEventListener('change', (e) => {
     setTheme(e.target.value);
   });
 
   document.querySelectorAll('.sidebar-link').forEach(link => {
-    if (link.href === window.location.href) {
-      link.classList.add('active');
-    };
+    if (link.href === window.location.href) link.classList.add('active');
   });
 
   setTargetBlank();

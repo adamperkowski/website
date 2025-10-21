@@ -44,6 +44,7 @@
     <meta property="og:image:alt" content="mimi the car running around">
 
     <script>{% include "partials/main.js" %}</script>
+    <script>{% include "partials/sse.js" %}</script>
     <script type="application/ld+json">{% include "partials/schema.json" %}</script>
   </head>
 
