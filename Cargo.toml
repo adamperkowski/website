@@ -6,7 +6,7 @@ edition = "2024"
 license = "LicenseRef-MIT-WITH-Happy-Bunny OR MIT"
 homepage = "https://adamperkowski.dev"
 repository = "https://github.com/adamperkowski/website"
-authors = ["Adam Perkowski <adas1per@protonmnail.com>"]
+authors = ["Adam Perkowski <me@adamperkowski.dev>"]
 
 [dependencies]
 axum = { version = "0.8.6", default-features = false }
