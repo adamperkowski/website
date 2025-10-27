@@ -1,0 +1,32 @@
+name: deploy to shuttle
+
+on:
+  push:
+    branches:
+      - allnew
+
+jobs:
+  build-deploy:
+    name: build and deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - run: mkdir -p /tmp
+
+      - name: build styles
+        uses: gha-utilities/sass-build@v0.6.1
+        with:
+          source: styles/main.scss
+          destination: /tmp/styles.css
+
+      - run: mv /tmp/styles.css static/styles.css
+
+      - name: deploy
+        uses: shuttle-hq/deploy-action@v2
+        with:
+          shuttle-api-key: ${{ secrets.SHUTTLE_API_KEY }}
+          project-id: proj_01K80VAJR7MSQJK57BGW2JX7NF
+          secrets: |
+            GITHUB_SECRET = '${{ secrets.GH_SECRET }}'
