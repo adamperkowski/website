@@ -15,5 +15,5 @@ rust-embed = "8.8.0"
 serde = { version = "1.0.228", default-features = false }
 shuttle-axum = "0.57.0"
 shuttle-runtime = "0.57.0"
-tera = { version = "1.20.0", default-features = false }
+tera = { version = "1.20.1", default-features = false }
 tower-http = { version = "0.6.6", default-features = false, features = ["fs"] }
